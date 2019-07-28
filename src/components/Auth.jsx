@@ -27,7 +27,7 @@ export default class Auth extends Component {
 
   render() {
     return (
-      <div class ="Auth">
+      <div className ="Auth">
           { !userSession.isUserSignedIn() ?
             <button
               className="btn btn-primary"
