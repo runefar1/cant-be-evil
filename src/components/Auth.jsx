@@ -32,14 +32,12 @@ export default class Auth extends Component {
             <button
               className="btn btn-primary"
               onClick={ this.handleSignIn }
-              Sign In
             >
               Sign In
             </button>
             : <button
               className="btn btn-secondary"
               onClick={ this.handleSignOut }
-              Sign Out
             >
               Sign Out
             </button>
