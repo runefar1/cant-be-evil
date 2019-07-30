@@ -70,7 +70,7 @@ export default class Auth extends Component {
     );
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
         window.location = window.location.origin;
