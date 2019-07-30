@@ -3,3 +3,13 @@
 .tab-content {
   border: thin solid red;
 }
+
+.avatar img {
+    border-radius: 20%;
+    height: 32px;
+    width: 32px;
+    margin-right: 0.5em;
+  }
+  .btn.btn-outline-secondary {
+    margin-left: 1em
+  }
