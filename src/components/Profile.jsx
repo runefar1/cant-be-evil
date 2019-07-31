@@ -25,12 +25,14 @@ export default class Profile extends Component {
     <div className="alert alert-info">
       <h2>Personal Information</h2>
       <p>Apps get to learn some personal information from your personal
-         Blockstack profile.</p>
+         Blockstack profile. Let's take a look...</p>
       { person.name()
-        ? <p>Welcome {person.name()}... yes, apps get your name, or
+        ? <p><strong>Name: </strong>
+            Welcome {person.name()}... yes, apps get your name, or
             at least what you said it was when signing up with Blockstack.
             You can change it if you like.</p>
-        : <p>You didn't provide a name when signing up for this account.
+        : <p><strong>Name: </strong>
+            You didn't provide a name when signing up for this account.
             That's of course OK. You can set it to whatever you like.
             Whatever name you provide will be available for the apps.</p>
       }
@@ -41,7 +43,8 @@ export default class Profile extends Component {
             <img src={person.avatarUrl()} className="profile-avatar" />
             <p>Apps get to see your avatar picture.</p>
           </div>
-        : <p>You haven't yet uploaded an image for your avatar... which is OK.
+        : <p><strong>Profile image: </strong>
+             You haven't yet uploaded an image for your avatar... which is OK.
              Nothing to be ashamed about. Apps don't care. But they may
              make your experience a little nicer if you do. Who
              doesn't like to see themself from time to time ;-)</p>

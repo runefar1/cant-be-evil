@@ -12,6 +12,25 @@
       html.user-signed-in .unless-authenticated {
         display: none !important;
       }
+
+      html:not(.loaded) nav.navbar {
+        background-color: #F8F8F8;
+        height: 56px;
+      }
+      html:not(.loaded) nav.navbar * {
+        display: none;
+      }
+
+      html:not(.loaded) body {
+        background-color: #DDD;
+        margin: 0;
+        padding: 0;
+      }
+
+      html:not(.loaded) .jumbotron {
+        opacity: 0;
+      }
+
     </style>
 
   </head>
@@ -40,7 +59,6 @@
   </nav>
 
   <div class ="jumbotron">
-    <h1 class ="display-4">Can't be evil?</h1>
     <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
 
     <div class = "row">
@@ -54,7 +72,7 @@
               of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
                while at the same time giving us the ability to increase our own ownerships of this data
                by encrypting it with a key/value system under a blockstack numerical id. </p>
- 
+
       </div>
 
       <div class= "col col-12 col-sm-7">
@@ -91,6 +109,12 @@
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+      window.onload = function () {
+        document.documentElement.className = "loaded"
+      };
+    </script>
 
   </body>
 </html>
