@@ -1,13 +1,7 @@
 import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
-import {
-  UserSession,
-  AppConfig
-} from 'blockstack';
-
-const appConfig = new AppConfig()
-const userSession = new UserSession({ appConfig: appConfig })
+import { userSession } from './Global.js';
 
 export default class App extends Component {
 
@@ -42,6 +36,8 @@ export default class App extends Component {
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
         window.location = window.location.origin;
+        console.log("User Signed In")
+        document.documentElement.className = "user-signed-in"
       });
     }
   }

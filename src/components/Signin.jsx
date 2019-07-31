@@ -9,16 +9,17 @@ export default class Signin extends Component {
     const { handleSignIn } = this.props;
 
     return (
-      <div className="panel-landing" id="section-1">
+      <div className="alert alert-primary mt-4">
         <p className="lead">
-          <button
+          Curious about what Blockstack apps get to know about you?
+          Sign in for a personalized interactive guide that reveals
+          the facts.</p>
+        <button
             className="btn btn-primary btn-lg"
             id="signin-button"
-            onClick={ handleSignIn.bind(this) }
-          >
+            onClick={ handleSignIn.bind(this) }>
             Sign In with Blockstack
-          </button>
-        </p>
+        </button>
       </div>
     );
   }

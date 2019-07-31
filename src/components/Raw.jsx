@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import {
-  UserSession,
-  AppConfig
-} from 'blockstack';
-
-const appConfig = new AppConfig()
-
-
+import { userSession } from './Global.js';
 
 class Raw extends Component {
 
@@ -14,7 +7,7 @@ class Raw extends Component {
     super(props)
     this.state = {
     }
-    this.userSession = new UserSession({ appConfig })
+    this.userSession = userSession
     this.userData = this.userSession.loadUserData()
 
   }
@@ -69,10 +62,10 @@ class Raw extends Component {
            </tbody>
           </table>
 
-          <div class="col-12-w-100">
-                <div class="w-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Profile</h5>
+          <div className="col-12-w-100">
+                <div className="w-100">
+                    <div className="card-body">
+                        <h5 className="card-title">Profile</h5>
 
 
             <div className="table-responsive">

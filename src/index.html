@@ -5,6 +5,14 @@
 
     <meta charset="utf-8">
 
+    <style>
+      html:not(.user-signed-in) .when-authenticated {
+        display: none !important;
+      }
+      html.user-signed-in .unless-authenticated {
+        display: none !important;
+      }
+    </style>
 
   </head>
   <body>
@@ -15,6 +23,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+      <!--
       <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
@@ -25,9 +34,9 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
-      </ul>
-      <div id = "auth-root">Sign in</div>
+      </ul> -->
     </div>
+    <div id = "auth-root">Sign in</div>
   </nav>
 
   <div class ="jumbotron">
@@ -35,47 +44,45 @@
     <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
 
     <div class = "row">
-      <div class ="col-sm-4">
+      <div class ="col col-12 col-sm-5">
         <h2> What is Blockstack?</h2>
-        <p>  Blockstack is a benefit corporation which runs the titular decentralized network and app ecosystem
+        <p>  Blockstack is a public benefit corporation which runs the titular decentralized network and app ecosystem
             which is forming the backbone of many of the newest technologies arising especially when it comes to security, privacy
            and how they encrypt your information. </p>
-      </div>
 
-      <div class= "col-sm-4">
-        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
-        <p> Its' logo ,a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
+        <p>The slogan "Can't be Evil" is a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
               of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
                while at the same time giving us the ability to increase our own ownerships of this data
                by encrypting it with a key/value system under a blockstack numerical id. </p>
+ 
+      </div>
+
+      <div class= "col col-12 col-sm-7">
+        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
       </div>
     </div>
 
-    <div class = "row">
-      <div class -"col-sm-4">
-        <h2> Privacy! </h2>
+    <h2 class="when-authenticated">What Apps Get to Know</h2>
+    <div id="root">Loading</div>
+
+    <div class="row when-authenticated">
+      <div class="col-sm-4">
+        <h2>Privacy</h2>
         <p> To understand a bit more about how a company views privacy
            and how they think about what is important, it can be good to go to there
            privacy policy and explore so what they focus on
-           lets do some of that with Blockstack
-
-
-           <br>To anaylize it yourself you can a access it here:
-           https://blockstack.org/legal/privacy-policy</br>
-
+           lets do some of that with Blockstack.</p>
+        <p>To anaylize it yourself you can
+             <a href="https://blockstack.org/legal/privacy-policy">view it here</a>
         </p>
-
-
+      </div>
     </div>
 
-        <div id="root">Loading</div>
-        <div id="raw-root">Raw Data</div>
-
-
-
-
-
-
+    <div class="when-authenticated">
+        <h2>Raw Data</h2>
+        <p>
+        <div id="raw-root">...</div>
+    </div>
 
 <!-- Can be included in compiled js -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
