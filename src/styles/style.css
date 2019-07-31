@@ -1,3 +1,11 @@
+/* Preloading */
+
+:not(html.loaded) nav .navbar {
+  height: 48px;
+  background-color: #AAA;
+}
+
+
 /* Globals */
 
 .tab-content {
