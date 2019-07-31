@@ -1,16 +1,11 @@
 import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
-import {
-  UserSession,
-  AppConfig,
-  Person
-} from 'blockstack';
+import { Person } from 'blockstack';
+
+import { userSession } from './Global.js';
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
-
-const appConfig = new AppConfig()
-const userSession = new UserSession({ appConfig: appConfig })
 
 export default class Auth extends Component {
 
@@ -45,7 +40,6 @@ export default class Auth extends Component {
       <div className ="Auth">
           { userSession.isUserSignedIn() ?
             <span className= "avatar">
-
                 <img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage}
                     className = "avatar-image" id="avatar-image" />
                 { person.name() }
@@ -71,12 +65,13 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
+    /*
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
         window.location = window.location.origin;
         this.setState({person: new Person(userData.profile)
         })
       });
-    }
+    } */
   }
 }
