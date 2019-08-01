@@ -1,10 +1,10 @@
 {
-  "name": "Can't be evil",
-  "start_url": "localhost:8080",
-  "description": "A simple demo of Blockstack Auth",
+  "name": "Can't be Evil?",
+  "start_url": "https://cantbeevil.app",
+  "description": "An interactive exposé on decentralized apps and digital rights.",
   "icons": [{
-    "src": "http://localhost:8080/icon-192x192.png",
-    "sizes": "192x192",
+    "src": "https://cantbeevil.app/media/logo.png",
+    "sizes": "22x22",
     "type": "image/png"
   }]
 }

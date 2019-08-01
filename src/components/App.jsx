@@ -23,22 +23,33 @@ export default class App extends Component {
     return (
       <div className="site-wrapper">
         <div className="site-wrapper-inner">
-          { !userSession.isUserSignedIn() ?
+          { userSession.isUserSignedIn() ?
+            <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+            : !userSession.isSignInPending() ?
             <Signin userSession={userSession} handleSignIn={ this.handleSignIn } />
-            : <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+            : <div className="alert alert-warning" hidden={true}>Signing you in...</div>
           }
         </div>
       </div>
     );
   }
 
-  componentWillMount() {
+  handleSignedIn (userData) {
+    // window.location = window.location.origin;
+    console.log("User Signed In")
+    if (this){
+      this.setState({userData: userData})
+    }
+    document.documentElement.className += "user-signed-in"
+  }
+
+  componentDidMount() {
     if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then((userData) => {
-        window.location = window.location.origin;
-        console.log("User Signed In")
-        document.documentElement.className = "user-signed-in"
-      });
+      userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this));
+    } else if (userSession.isUserSignedIn()) {
+      this.handleSignedIn (userSession.loadUserData(), true)
+    } else {
+      document.documentElement.className -= "user-signed-in"
     }
   }
 }

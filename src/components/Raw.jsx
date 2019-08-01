@@ -8,7 +8,6 @@ class Raw extends Component {
     this.state = {
     }
     this.userSession = userSession
-    this.userData = this.userSession.loadUserData()
 
   }
 
@@ -27,7 +26,8 @@ class Raw extends Component {
 
 
 
-  render() {
+  renderCore() {
+    this.userData = this.userSession.loadUserData()
     const userData = this.userData
     const appPrivatekey = userData.appPrivatekey
     const username = userData.username
@@ -42,10 +42,6 @@ class Raw extends Component {
     const profile = userData.profile
     return (
       <div className="row">
-
-
-
-        <h2>My username is {username}</h2>
         <div className="table-responsive">
           <table className="table table-dark table-striped">
            <tbody>
@@ -80,7 +76,7 @@ class Raw extends Component {
                   {
                     Object.entries(profile).map (([key, val]) => {
                     return(
-                       <tr><th>{key}</th><td>{JSON.stringify(val)}</td></tr>
+                       <tr key={key}><th>{key}</th><td>{JSON.stringify(val)}</td></tr>
                     )}) }
                 </tbody>
               </table>
@@ -90,17 +86,13 @@ class Raw extends Component {
           </div>
           </div>
 
-
-
-
-
-
         <hr />
-
-
-
-      </div>
+    </div>
     );
+  }
+
+  render () {
+    return (userSession.isUserSignedIn() ? this.renderCore() : null)
   }
 }
 

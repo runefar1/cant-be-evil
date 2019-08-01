@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { userSession } from './Global.js';
 
 export default class Signin extends Component {
   constructor(props) {
@@ -22,5 +23,9 @@ export default class Signin extends Component {
         </button>
       </div>
     );
+  }
+
+  componentDidMount() {
+    
   }
 }
