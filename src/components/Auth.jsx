@@ -65,13 +65,12 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    /*
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
-        window.location = window.location.origin;
+        // window.location = window.location.origin;
         this.setState({person: new Person(userData.profile)
         })
       });
-    } */
+    }
   }
 }

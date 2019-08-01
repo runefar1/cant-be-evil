@@ -59,11 +59,13 @@ export default class Profile extends Component {
   render() {
     const { userSession } = this.props;
     return (
-      !userSession.isSignInPending() ? this.renderCore() : null
+      userSession.isUserSignedIn()
+      ? this.renderCore()
+      : <div class="alert alert-warning">Not completely signed in</div>
     );
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { userSession } = this.props;
     this.setState({
       person: new Person(userSession.loadUserData().profile),

@@ -1,11 +1,3 @@
-/* Preloading */
-
-:not(html.loaded) nav .navbar {
-  height: 48px;
-  background-color: #AAA;
-}
-
-
 /* Globals */
 
 .tab-content {
@@ -18,6 +10,7 @@
     width: 32px;
     margin-right: 0.5em;
   }
-  .btn.btn-outline-secondary {
+
+.btn.btn-outline-secondary {
     margin-left: 1em
-  }
+}

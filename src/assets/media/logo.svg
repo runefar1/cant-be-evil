@@ -1,0 +1,11 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+ <g>
+  <title>Can't Be Evil</title>
+  <rect x="0" y="0" width="600" height="600"
+        fill="white" stroke="#1D0B28" stroke-width="16" rx="6" />
+  <ellipse cx="250" cy="100" rx="220" ry="50" style="fill:yellow; stroke: orange" />
+  <ellipse cx="250" cy="100" rx="200" ry="40" style="fill:white; stroke: orange" /> </g>
+</svg>
