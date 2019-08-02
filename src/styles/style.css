@@ -14,3 +14,28 @@
 .btn.btn-outline-secondary {
     margin-left: 1em
 }
+
+#raw-data-container {
+  max-width: 100vw;
+}
+
+#raw-data-container table th {
+  word-break: keep-all;
+}
+
+#raw-data-container table td {
+  word-break: break-all;
+}
+
+/* Footer */
+
+.blockstack-glyph {
+  height: 0.9rem;
+  width: 0.9rem;
+  margin-right: 0.2rem;
+  background-image: url(https://pbs.twimg.com/profile_images/1099073690065547265/0T4PyCGk_400x400.png);
+  background-position: -0.35rem -0.35rem;
+  background-repeat: no-repeat;
+  background-size: 170% 170%;
+  border-radius: 0.2rem;
+}
