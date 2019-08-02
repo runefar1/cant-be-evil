@@ -15,6 +15,18 @@
     margin-left: 1em
 }
 
+#raw-data-container {
+  max-width: 100vw;
+}
+
+#raw-data-container table th {
+  word-break: keep-all;
+}
+
+#raw-data-container table td {
+  word-break: break-all;
+}
+
 /* Footer */
 
 .blockstack-glyph {
