@@ -67,7 +67,7 @@
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
-  <div class ="jumbotron">
+  <div class ="jumbotron mb-0">
     <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
 
     <div class = "row">
@@ -122,7 +122,8 @@
 
     <div class="when-authenticated">
         <h2>Raw Data</h2>
-        <p>Want more? We got it all!</p>
+        <p>Want to know more about what dapps knows about you? We got it all!
+           Here is some of the raw data (spoiler alert: some of it is very cryptic ;)</p>
         <button type="button"
                 class="btn btn-info"
                 onclick="$('#raw-data-container').toggle()"
@@ -130,8 +131,17 @@
         <div id="raw-data-container">
           <div id="raw-root" class="mt-4">...</div>
         </div>
+      </div>
     </div>
-  </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Made with <i class="far fa-heart" style="color: salmon"></i> <i class="fa blockstack-glyph">&nbsp;</i>
+          in San Francisco</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
     <!-- Can be included in compiled js -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -148,6 +158,10 @@
         $('#raw-data-container').hide()
       };
     </script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+          rel="stylesheet">
+
 
   </body>
 </html>
