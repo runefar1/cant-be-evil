@@ -1,5 +1,18 @@
 /* Globals */
 
+.inspect {
+  border: thin solid red;
+}
+
+.inspect .inspect {
+  border: thin solid yellow;
+}
+
+.inspect .inspect .inspect {
+  border: thin solid green;
+}
+
+
 /* Heading */
 
 .navbar-brand {
