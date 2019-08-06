@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Person } from 'blockstack';
+import { BlockstackContext} from './Blockstack.jsx'
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
 
@@ -57,7 +58,7 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { userSession } = this.props;
+    const { userSession } = this.context
     return (
       userSession.isUserSignedIn()
       ? this.renderCore()
@@ -66,9 +67,11 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    const { userSession } = this.props;
+    const { userSession, userData } = this.context
     this.setState({
-      person: new Person(userSession.loadUserData().profile),
+      person: new Person(userData.profile)
     });
   }
 }
+
+Profile.contextType = BlockstackContext

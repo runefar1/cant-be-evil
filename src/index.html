@@ -116,8 +116,14 @@
 
       <div class= "col col-12 col-md-7">
         <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
-        <div class="col-12">
-          <div id="signin-root"></div>
+        <div class="col-12 unless-authenticated">
+          <div class="alert alert-primary mt-4">
+            <p class="lead">
+              Curious about what Blockstack apps get to know about you?
+              Sign in for a personalized interactive guide that reveals
+              the facts.</p>
+            <div id="signin-root"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -127,7 +133,7 @@
     </h2>
 
     <div class="row row-eq-height">
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-md-8 when-authenticated">
         <div id="app-root">Loading</div>
       </div>
       <div class="col-12 col-md-4 pb-3 when-authenticated">

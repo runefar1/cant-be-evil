@@ -1,7 +1,8 @@
-import React, { Component, Link } from 'react';
-import Profile from './Profile.jsx';
-import Signin from './Signin.jsx';
+import React, { Component, Link } from 'react'
 import ReactDOM from 'react-dom'
+import Profile from './Profile.jsx'
+import Signin from './Signin.jsx'
+import { handleSignIn, handleSignOut, BlockstackContext} from './Blockstack.jsx'
 
 const settingsFilename = "settings_1"
 
@@ -12,25 +13,16 @@ export default class App extends Component {
     this.state = {}
   }
 
-  handleSignIn(e) {
-    e.preventDefault();
-    this.props.userSession.redirectToSignIn();
-  }
-
-  handleSignOut(e) {
-    e.preventDefault();
-    this.props.userSession.signUserOut(window.location.origin);
-  }
-
   render() {
-    const userSession = this.props.userSession
+    const context = this.context
+    const {userSession, userData} = context
     return (
       <div className="site-wrapper">
         <div className="site-wrapper-inner">
           { (!userSession.isUserSignedIn() && !userSession.isSignInPending()) ?
-            <Signin userSession={userSession} handleSignIn={ this.handleSignIn } />
+            <Signin userSession={userSession} handleSignIn={ handleSignIn } />
             : !userSession.isSignInPending() ?
-            <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+            <Profile userSession={userSession} handleSignOut={ handleSignOut } />
             : <div className="alert alert-warning">Signin pending</div>
           }
         </div>
@@ -53,13 +45,10 @@ export default class App extends Component {
 
   handleSignedIn (userData) {
     console.log("User Signed In")
-
+    const {userSession} = this.context
     const historyFile = "history/" + this.uuidv4()
     const timeStamp = "" + Date.now()
-    const userSession = this.props.userSession
     userSession.putFile(historyFile, JSON.stringify({when: timeStamp}))
-
-    window.history.replaceState({}, document.title, "/")
 
     if (true){
       this.setState({userData: userData,
@@ -69,11 +58,12 @@ export default class App extends Component {
       .catch( err => console.log("Failed to count visits:", err))
       .finally(value => console.log("Visits:", value))
     }
-    document.documentElement.classList.add("user-signed-in")
   }
 
   componentDidMount() {
-    const userSession = this.props.userSession
+    // const userSession = this.props.userSession
+    const {userSession, userData} = this.context
+    console.log("Session:", !!userSession)
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this));
     } else if (userSession.isUserSignedIn()) {
@@ -83,3 +73,5 @@ export default class App extends Component {
     }
   }
 }
+
+App.contextType = BlockstackContext

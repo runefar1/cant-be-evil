@@ -2,6 +2,7 @@ import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
 import { Person } from 'blockstack';
+import { handleSignIn, handleSignOut, BlockstackContext} from './Blockstack.jsx'
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
 
@@ -21,22 +22,9 @@ export default class Auth extends Component {
         }
     }
 
-
-  handleSignIn(e) {
-    e.preventDefault();
-    const userSession = this.props.userSession
-    userSession.redirectToSignIn();
-  }
-
-  handleSignOut(e) {
-    e.preventDefault();
-    const userSession = this.props.userSession
-    userSession.signUserOut(window.location.origin);
-  }
-
   render() {
     const {person} = this.state;
-    const {userSession} = this.props
+    const {userSession} = this.context
     return (
       <div className ="Auth">
           { userSession.isUserSignedIn() ?
@@ -50,13 +38,13 @@ export default class Auth extends Component {
           { !userSession.isUserSignedIn() ?
             <button
               className="btn btn-primary"
-              onClick={ this.handleSignIn.bind(this) }
+              onClick={ handleSignIn }
             >
               Sign In
             </button>
             : <button
               className="btn btn-outline-secondary"
-              onClick={ this.handleSignOut.bind(this) }
+              onClick={ handleSignOut }
             >
               Sign Out
             </button>
@@ -70,7 +58,7 @@ export default class Auth extends Component {
   }
 
   componentDidMount() {
-    const userSession = this.props.userSession
+    const userSession = this.context.userSession
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this))
     } else if (userSession.isUserSignedIn()) {
@@ -79,3 +67,5 @@ export default class Auth extends Component {
     };
   }
 }
+
+Auth.contextType = BlockstackContext

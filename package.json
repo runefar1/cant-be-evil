@@ -34,12 +34,13 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
+    "@dbeining/react-atom": "^4.1.1",
     "blockstack": "~19.2.2",
     "bootstrap": "~4.3.1",
     "jquery": "^3.4.1",
     "popper": "^1.0.1",
     "popper.js": "^1.15.0",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
