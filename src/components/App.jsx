@@ -1,7 +1,7 @@
 import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
-import { userSession } from './Global.js';
+import ReactDOM from 'react-dom'
 
 const settingsFilename = "settings_1"
 
@@ -14,23 +14,24 @@ export default class App extends Component {
 
   handleSignIn(e) {
     e.preventDefault();
-    userSession.redirectToSignIn();
+    this.props.userSession.redirectToSignIn();
   }
 
   handleSignOut(e) {
     e.preventDefault();
-    userSession.signUserOut(window.location.origin);
+    this.props.userSession.signUserOut(window.location.origin);
   }
 
   render() {
+    const userSession = this.props.userSession
     return (
       <div className="site-wrapper">
         <div className="site-wrapper-inner">
-          { userSession.isUserSignedIn() ?
-            <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
-            : !userSession.isSignInPending() ?
+          { (!userSession.isUserSignedIn() && !userSession.isSignInPending()) ?
             <Signin userSession={userSession} handleSignIn={ this.handleSignIn } />
-            : <div className="alert alert-warning" hidden={true}>Signing you in...</div>
+            : !userSession.isSignInPending() ?
+            <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+            : <div className="alert alert-warning">Signin pending</div>
           }
         </div>
       </div>
@@ -51,14 +52,16 @@ export default class App extends Component {
   }
 
   handleSignedIn (userData) {
-    // window.location = window.location.origin;
     console.log("User Signed In")
 
     const historyFile = "history/" + this.uuidv4()
     const timeStamp = "" + Date.now()
+    const userSession = this.props.userSession
     userSession.putFile(historyFile, JSON.stringify({when: timeStamp}))
 
-    if (this){
+    window.history.replaceState({}, document.title, "/")
+
+    if (true){
       this.setState({userData: userData,
                      historyFile: historyFile})
       userSession.listFiles(file => true)
@@ -66,16 +69,17 @@ export default class App extends Component {
       .catch( err => console.log("Failed to count visits:", err))
       .finally(value => console.log("Visits:", value))
     }
-    document.documentElement.className += "user-signed-in"
+    document.documentElement.classList.add("user-signed-in")
   }
 
   componentDidMount() {
+    const userSession = this.props.userSession
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this));
     } else if (userSession.isUserSignedIn()) {
-      this.handleSignedIn (userSession.loadUserData(), true)
+      this.handleSignedIn.bind(this)(userSession.loadUserData())
     } else {
-      document.documentElement.className -= "user-signed-in"
+      document.documentElement.classList.remove("user-signed-in")
     }
   }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { userSession } from './Global.js';
 
 class Raw extends Component {
 
@@ -7,24 +6,13 @@ class Raw extends Component {
     super(props)
     this.state = {
     }
-    this.userSession = userSession
+    this.userSession = this.props.userSession
 
   }
-
-  componentWillMount() {
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-  }
-
 
   handleChange(event) {
    this.setState({value: event.target.value});
   }
-
-
-
 
   renderCore() {
     this.userData = this.userSession.loadUserData()
@@ -92,8 +80,18 @@ class Raw extends Component {
   }
 
   render () {
+    const userSession = this.userSession
     return (userSession.isUserSignedIn() ? this.renderCore() : null)
   }
+
+  componentDidMount() {
+    const userSession = this.userSession
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(this.forceUpdate.bind(this))
+    }
+  }
+
+
 }
 
 export default Raw

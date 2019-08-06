@@ -3,8 +3,6 @@ import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
 import { Person } from 'blockstack';
 
-import { userSession } from './Global.js';
-
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
 
 export default class Auth extends Component {
@@ -26,16 +24,19 @@ export default class Auth extends Component {
 
   handleSignIn(e) {
     e.preventDefault();
+    const userSession = this.props.userSession
     userSession.redirectToSignIn();
   }
 
   handleSignOut(e) {
     e.preventDefault();
+    const userSession = this.props.userSession
     userSession.signUserOut(window.location.origin);
   }
 
   render() {
     const {person} = this.state;
+    const {userSession} = this.props
     return (
       <div className ="Auth">
           { userSession.isUserSignedIn() ?
@@ -49,13 +50,13 @@ export default class Auth extends Component {
           { !userSession.isUserSignedIn() ?
             <button
               className="btn btn-primary"
-              onClick={ this.handleSignIn }
+              onClick={ this.handleSignIn.bind(this) }
             >
               Sign In
             </button>
             : <button
               className="btn btn-outline-secondary"
-              onClick={ this.handleSignOut }
+              onClick={ this.handleSignOut.bind(this) }
             >
               Sign Out
             </button>
@@ -64,13 +65,17 @@ export default class Auth extends Component {
     );
   }
 
+  handleSignedIn (userData) {
+    this.setState({person: new Person(userData.profile) })
+  }
+
   componentDidMount() {
+    const userSession = this.props.userSession
     if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then((userData) => {
-        // window.location = window.location.origin;
-        this.setState({person: new Person(userData.profile)
-        })
-      });
-    }
+      userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this))
+    } else if (userSession.isUserSignedIn()) {
+        const userData = userSession.loadUserData()
+        this.handleSignedIn.bind(this)(userData)
+    };
   }
 }
