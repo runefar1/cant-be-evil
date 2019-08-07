@@ -1,7 +1,8 @@
-import React, { Component, Link } from 'react';
-import Profile from './Profile.jsx';
-import Signin from './Signin.jsx';
-import { userSession } from './Global.js';
+import React, { Component, Link } from 'react'
+import ReactDOM from 'react-dom'
+import Profile from './Profile.jsx'
+import Signin from './Signin.jsx'
+import { handleSignIn, handleSignOut, BlockstackContext} from './Blockstack.jsx'
 
 const settingsFilename = "settings_1"
 
@@ -12,25 +13,17 @@ export default class App extends Component {
     this.state = {}
   }
 
-  handleSignIn(e) {
-    e.preventDefault();
-    userSession.redirectToSignIn();
-  }
-
-  handleSignOut(e) {
-    e.preventDefault();
-    userSession.signUserOut(window.location.origin);
-  }
-
   render() {
+    const context = this.context
+    const {userSession, userData} = context
     return (
       <div className="site-wrapper">
         <div className="site-wrapper-inner">
-          { userSession.isUserSignedIn() ?
-            <Profile userSession={userSession} handleSignOut={ this.handleSignOut } />
+          { (!userSession.isUserSignedIn() && !userSession.isSignInPending()) ?
+            <Signin userSession={userSession} handleSignIn={ handleSignIn } />
             : !userSession.isSignInPending() ?
-            <Signin userSession={userSession} handleSignIn={ this.handleSignIn } />
-            : <div className="alert alert-warning" hidden={true}>Signing you in...</div>
+            <Profile userSession={userSession} handleSignOut={ handleSignOut } />
+            : <div className="alert alert-warning">Signin pending</div>
           }
         </div>
       </div>
@@ -51,14 +44,13 @@ export default class App extends Component {
   }
 
   handleSignedIn (userData) {
-    // window.location = window.location.origin;
     console.log("User Signed In")
-
+    const {userSession} = this.context
     const historyFile = "history/" + this.uuidv4()
     const timeStamp = "" + Date.now()
     userSession.putFile(historyFile, JSON.stringify({when: timeStamp}))
 
-    if (this){
+    if (true){
       this.setState({userData: userData,
                      historyFile: historyFile})
       userSession.listFiles(file => true)
@@ -66,16 +58,20 @@ export default class App extends Component {
       .catch( err => console.log("Failed to count visits:", err))
       .finally(value => console.log("Visits:", value))
     }
-    document.documentElement.className += "user-signed-in"
   }
 
   componentDidMount() {
+    // const userSession = this.props.userSession
+    const {userSession, userData} = this.context
+    console.log("Session:", !!userSession)
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this));
     } else if (userSession.isUserSignedIn()) {
-      this.handleSignedIn (userSession.loadUserData(), true)
+      this.handleSignedIn.bind(this)(userSession.loadUserData())
     } else {
-      document.documentElement.className -= "user-signed-in"
+      document.documentElement.classList.remove("user-signed-in")
     }
   }
 }
+
+App.contextType = BlockstackContext

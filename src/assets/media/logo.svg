@@ -1,11 +1,20 @@
-<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"
+<svg width="400" height="400" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
      xmlns:svg="http://www.w3.org/2000/svg">
  <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
 
  <g>
   <title>Can't Be Evil</title>
-  <rect x="0" y="0" width="600" height="600"
-        fill="white" stroke="#1D0B28" stroke-width="16" rx="6" />
-  <ellipse cx="250" cy="100" rx="220" ry="50" style="fill:yellow; stroke: orange" />
-  <ellipse cx="250" cy="100" rx="200" ry="40" style="fill:white; stroke: orange" /> </g>
+     <clipPath id="cut-off-top">
+        <rect x="0" y="43" width="100" height="40" />
+     </clipPath>
+     <rect x="31.5" y="23" width="37" height="40.5" clip-path="url(#cut-off-top)"
+            fill="#526374" stroke="red" stroke-width="0" rx="12" ry="12" />
+     <circle cx="50" cy="41.5" width="37" r="18.5"
+           fill="#526374" stroke="red" stroke-width="0"/>
+     <circle cx="50" cy="103" r="32"
+            fill="#526374" stroke="red" stroke-width="0"/>
+     <ellipse cx="50" cy="15" rx="20" ry="5"
+      stroke-width="3" stroke="yellow"
+      style="fill:transparent;" />
+ </g>
 </svg>

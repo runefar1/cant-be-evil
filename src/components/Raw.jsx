@@ -1,34 +1,18 @@
 import React, { Component } from 'react'
-import { userSession } from './Global.js';
+import { BlockstackContext} from './Blockstack.jsx'
 
 class Raw extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-    }
-    this.userSession = userSession
-
+    this.state = {}
   }
-
-  componentWillMount() {
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-  }
-
 
   handleChange(event) {
    this.setState({value: event.target.value});
   }
 
-
-
-
-  renderCore() {
-    this.userData = this.userSession.loadUserData()
-    const userData = this.userData
+  renderData (userData) {
     const appPrivatekey = userData.appPrivatekey
     const username = userData.username
     const email = userData.email
@@ -92,8 +76,11 @@ class Raw extends Component {
   }
 
   render () {
-    return (userSession.isUserSignedIn() ? this.renderCore() : null)
+    const {userSession, userData} = this.context
+    return (userData ? this.renderData(userData) : null )
   }
 }
+
+Raw.contextType = BlockstackContext
 
 export default Raw

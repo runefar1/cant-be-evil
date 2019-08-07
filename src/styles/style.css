@@ -1,5 +1,29 @@
 /* Globals */
 
+.inspect {
+  border: thin solid red;
+}
+
+.inspect .inspect {
+  border: thin solid yellow;
+}
+
+.inspect .inspect .inspect {
+  border: thin solid green;
+}
+
+
+/* Heading */
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-brand img {
+  background-color: #202020;
+  border-radius: 50%;
+}
+
 .tab-content {
   border: thin solid red;
 }

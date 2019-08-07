@@ -18,6 +18,10 @@
         display: none !important;
       }
 
+      html.loading .unless-loading {
+        display: none !important;
+      }
+
       html.loading nav.navbar {
         background-color: #F8F8F8;
         height: 56px;
@@ -40,18 +44,18 @@
 
   </head>
   <body>
-    <noscript>Sorry, our web page has limited functionality without JavaScript enabled</noscript>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <noscript>Totally understand browsing with javascript disabled, but you need to enable javascript to use the interactive functionality of this page.</noscript>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
     <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
     <a class="navbar-brand" href="#">
-      <img src="/media/logo.png" height=32 width=32 />
-      Can't be evil?</a>
-    <!--
+      <img src="/media/logo.svg" height=32 width=32 />
+      Can't Be Evil?</a>
     <div class="collapse navbar-collapse" id="navbarNav">
+      <!--
       <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
@@ -62,8 +66,34 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
-      </ul>
-    </div>-->
+      </ul> -->
+      <div class="navbar-nav ml-auto mr-4">
+        <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
+          style="border:none; font-size: 1.5rem;"
+          role="button"
+          data-toggle="tooltip" title="Check out our channel on twitter"
+          target="_blank"
+          href="https://www.twitter.com/cantbeevil">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
+          style="border:none; font-size: 1.5rem;"
+          role="button"
+          data-toggle="tooltip" title="Follow us on Product Hunt"
+          target="_blank"
+          href="https://www.producthunt.com/upcoming/cantbeevil">
+          <i class="fab fa-product-hunt"></i>
+        </a>
+        <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
+          style="border:none; font-size: 1.5rem;"
+          role="button"
+          data-toggle="tooltip" title="Watch the project on Github"
+          target="_blank"
+          href="https://github.com/runefar1/cant-be-evil">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
@@ -86,19 +116,28 @@
 
       <div class= "col col-12 col-md-7">
         <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
+        <div class="col-12 unless-authenticated">
+          <div class="alert alert-primary mt-4">
+            <p class="lead">
+              Curious about what Blockstack apps get to know about you?
+              Sign in for a personalized interactive guide that reveals
+              the facts.</p>
+            <div id="signin-root"></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <h2 class="when-authenticated">
-      What Your Dapps Get to Know About You
+      What Dapps Get to Know About You
     </h2>
 
-    <div class="row">
-      <div class="col-12 col-sm-8">
-        <div id="root">Loading</div>
+    <div class="row row-eq-height">
+      <div class="col-12 col-md-8 when-authenticated">
+        <div id="app-root">Loading</div>
       </div>
-      <div class="col-12 col-sm-4 when-authenticated">
-        <div class="alert alert-info">
+      <div class="col-12 col-md-4 pb-3 when-authenticated">
+        <div class="alert alert-light border-info h-100">
           <h2>Privacy</h2>
           <p> To understand a bit more about how a company views privacy
              and how they think about what is important, it can be good to go to their
@@ -106,7 +145,7 @@
              lets do some of that with Blockstack.</p>
           <p>To anaylize it yourself you can
                <a href="https://blockstack.org/legal/privacy-policy"
-                  target="_blank">view it here</a>
+                  target="_blank">view it here.</a>
           </p>
         </div>
       </div>
@@ -119,10 +158,6 @@
       So far you have visited this page only <span class="badge badge-primary app-visit-count"> times</span>.
     </div>
 
-    <div class="row when-authenticated">
-
-    </div>
-
     <div class="when-authenticated">
         <h2>Raw Data</h2>
         <p>Want to know more about what dapps knows about you? We got it all!
@@ -130,7 +165,7 @@
         <button type="button"
                 class="btn btn-info"
                 onclick="$('#raw-data-container').toggle()"
-              >Toggle</button>
+              >Reveal</button>
         <div id="raw-data-container">
           <div id="raw-root" class="mt-4">...</div>
         </div>
@@ -138,7 +173,57 @@
     </div>
 
     <footer class="py-5 bg-dark">
-      <div class="container">
+      <style type="text/css">
+        #ph-email-form {
+          box-sizing: border-box;
+          text-align: center;
+          margin: auto;
+          padding: 0;
+          margin-bottom: 2em;
+          /*
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-direction: row;
+          */
+        }
+
+        #ph-email {
+          border: 1px solid #e8e8e8;
+          box-sizing: border-box;
+          color: #000;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+          font-size: 13px;
+          padding: 8px;
+        }
+
+        #ph-subscribe-button {
+          margin-left: 10px;
+          background: #cc4d29;
+          border-radius: 3px;
+          border: 1px solid #cc4d29;
+          /*box-sizing: border-box;*/
+          color: #fff;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+          font-size: 11px;
+          font-weight: 600;
+          height: 34px;
+          letter-spacing: .3px;
+          line-height: 16px;
+          padding: 0 13px;
+          text-transform: uppercase;
+        }
+      </style>
+      <div class="container unless-loading">
+          <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+            <p class="text-white">Join our mailing list to get announcements about <i>Can't Be Evil:</i></p>
+            <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
+            <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+          </form>
+      </div>
+
+      <div class="container unless-loading">
         <p class="m-0 text-center text-white">
           Made with <i class="far fa-heart" style="color: salmon"></i> <i class="fa blockstack-glyph">&nbsp;</i>
           in San Francisco.</p>
