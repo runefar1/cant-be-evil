@@ -4,6 +4,7 @@ import Auth from "./components/Auth.jsx"
 import App from './components/App.jsx'
 import Raw from './components/Raw.jsx'
 import Signin from './components/Signin.jsx'
+import Dapps from './components/section/Dapps.jsx'
 import Blockstack, {handleSignIn, handleSignOut} from './components/Blockstack.jsx'
 
 // Require Sass file so webpack can build it
@@ -16,5 +17,7 @@ ReactDOM.render(<Blockstack><Signin handleSignIn={handleSignIn}/></Blockstack>,
                 document.getElementById('signin-root'))
 ReactDOM.render(<Blockstack><Auth /></Blockstack>,
                 document.getElementById('auth-root'))
-ReactDOM.render(<div><Blockstack><Raw /></Blockstack></div>,
+ReactDOM.render(<Blockstack><Dapps /></Blockstack>,
+                document.getElementById('dapps-section'))
+ReactDOM.render(<Blockstack><Raw /></Blockstack>,
                 document.getElementById('raw-root'))

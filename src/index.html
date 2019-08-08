@@ -97,7 +97,7 @@
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
-  <div class ="jumbotron mb-0">
+  <div class ="jumbotron">
     <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
 
     <div class = "row">
@@ -127,52 +127,64 @@
         </div>
       </div>
     </div>
-
-    <h2 class="when-authenticated">
-      What Dapps Get to Know About You
-    </h2>
-
-    <div class="row row-eq-height">
-      <div class="col-12 col-md-8 when-authenticated">
-        <div id="app-root">Loading</div>
+  </div>
+  <div class="container">
+    <div class="card when-authenticated">
+      <h2 class="card-header">
+        What Dapps Get to Know About You
+      </h2>
+      <div class="card-body row row-eq-height">
+        <div class="col-12 col-md-8 when-authenticated">
+          <div id="app-root">Loading</div>
+        </div>
+        <div class="col-12 col-md-4 pb-3 when-authenticated">
+          <div class="alert alert-light border-info h-100">
+            <h2>Privacy</h2>
+            <p> To understand a bit more about how a company views privacy
+               and how they think about what is important, it can be good to go to their
+               privacy policy and explore so what they focus on
+               lets do some of that with Blockstack.</p>
+            <p>To anaylize it yourself you can
+                 <a href="https://blockstack.org/legal/privacy-policy"
+                    target="_blank">view it here.</a>
+            </p>
+          </div>
       </div>
-      <div class="col-12 col-md-4 pb-3 when-authenticated">
-        <div class="alert alert-light border-info h-100">
-          <h2>Privacy</h2>
-          <p> To understand a bit more about how a company views privacy
-             and how they think about what is important, it can be good to go to their
-             privacy policy and explore so what they focus on
-             lets do some of that with Blockstack.</p>
-          <p>To anaylize it yourself you can
-               <a href="https://blockstack.org/legal/privacy-policy"
-                  target="_blank">view it here.</a>
-          </p>
+    </div>
+  </div>
+
+  <div id="dapps-section" class="mt-4 "> </div>
+
+  <div class="alert alert-warning mt-4">
+        This is just the beginning. We will progressively provide
+        you with insights about digital media rights and the evolution
+        of decentralized apps. You are invited to come back for updates.
+        <span class="when-authenticated">
+          So far you have visited this dapp only <span class="badge badge-primary app-visit-count"> times</span>.
+        </span>
+  </div>
+
+  <div class="card when-authenticated">
+    <h2 class="card-header">But wait... there is more</h2>
+    <div class="card-body">
+
+      <div >
+          <h2>Raw Data</h2>
+          <p>Want to know more about what dapps knows about you? We got it all!
+             Here is some of the raw data (spoiler alert: some of it is very cryptic ;)</p>
+          <button type="button"
+                  class="btn btn-info"
+                  onclick="$('#raw-data-container').toggle()">
+                Reveal
+          </button>
+          <div id="raw-data-container">
+            <div id="raw-root" class="mt-4">...</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="alert alert-warning">
-      This is just the beginning. We will iteratively provide
-      you with insights about digital media rights and the evolution
-      of decentralized apps. You are invited to come back for updates.
-      So far you have visited this page only <span class="badge badge-primary app-visit-count"> times</span>.
-    </div>
-
-    <div class="when-authenticated">
-        <h2>Raw Data</h2>
-        <p>Want to know more about what dapps knows about you? We got it all!
-           Here is some of the raw data (spoiler alert: some of it is very cryptic ;)</p>
-        <button type="button"
-                class="btn btn-info"
-                onclick="$('#raw-data-container').toggle()"
-              >Reveal</button>
-        <div id="raw-data-container">
-          <div id="raw-root" class="mt-4">...</div>
-        </div>
-      </div>
-    </div>
-
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark mt-5">
       <style type="text/css">
         #ph-email-form {
           box-sizing: border-box;
