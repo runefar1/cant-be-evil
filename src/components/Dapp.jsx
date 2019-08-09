@@ -42,6 +42,9 @@ export default class Dapp extends Component {
                   {title}
           </p>
         </div>
+        {this.props.link ?
+          <a href={appUrl} className="stretched-link" target="_blank"></a>
+          : null}
       </div>
     );
   }

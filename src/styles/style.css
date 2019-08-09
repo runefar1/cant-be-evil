@@ -35,9 +35,12 @@
     margin-right: 0.5em;
   }
 
-.btn.btn-outline-secondary {
+.navbar .btn.btn-outline-secondary {
     margin-left: 1em
 }
+
+
+/* Raw 8?
 
 #raw-data-container {
   max-width: 100vw;

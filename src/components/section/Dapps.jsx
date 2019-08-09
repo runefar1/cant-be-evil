@@ -41,6 +41,19 @@ export default class Dapps extends Component {
                         {devCount} apps were used from <i>localhost.</i>
                       </div>
                     : null}
+       <div className="alert alert-info">
+         <div className="row mx-1">
+           <div className="col col-sm-9 col-md-10 mb-4">
+             That apps get to know what other dapps you've used can be beneficial.
+             It allows dapps to integrate by accessing each other's data.
+              Moreover, here is one app that uses this data to provide you with
+              access to apps you have used:
+            </div>
+            <div className="col col-6 col-sm-3 col-md-2 col-lg-2 mb-4 mx-auto">
+              <Dapp app={"https://dappity.app"} userSession={userSession} link={true} />
+            </div>
+          </div>
+       </div>
     </div>)
   }
 

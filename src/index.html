@@ -41,6 +41,47 @@
       }
 
     </style>
+          <style type="text/css">
+            #ph-email-form {
+              box-sizing: border-box;
+              text-align: center;
+              margin: auto;
+              padding: 0;
+              margin-bottom: 2em;
+              /*
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              flex-direction: row;
+              */
+            }
+
+            #ph-email {
+              border: 1px solid #e8e8e8;
+              box-sizing: border-box;
+              color: #000;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+              font-size: 13px;
+              padding: 8px;
+            }
+
+            #ph-subscribe-button {
+              margin-left: 10px;
+              background: #cc4d29;
+              border-radius: 3px;
+              border: 1px solid #cc4d29;
+              /*box-sizing: border-box;*/
+              color: #fff;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+              font-size: 11px;
+              font-weight: 600;
+              height: 34px;
+              letter-spacing: .3px;
+              line-height: 16px;
+              padding: 0 13px;
+              text-transform: uppercase;
+            }
+          </style>
 
   </head>
   <body>
@@ -98,6 +139,18 @@
   </nav>
 
   <div class ="jumbotron">
+    <div hidden="true" class="alert alert-info">
+            <div class="container unless-loading">
+                <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                      method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+                  <p class="text-white">Join our mailing list to get announcements about <i>Can't Be Evil:</i></p>
+                  <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
+                  <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+                </form>
+            </div>
+    </div>
+
+
     <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
 
     <div class = "row">
@@ -128,7 +181,7 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container-fluid">
     <div class="card when-authenticated">
       <h2 class="card-header">
         What Dapps Get to Know About You
@@ -154,17 +207,29 @@
   </div>
 
   <div id="dapps-section" class="mt-4 "> </div>
+  <div class="row px-3 unless-loading">
+    <div class="alert alert-warning mt-4 col-md-6 col-lg-4  mx-auto my-2">
+          This is just the beginning. We will progressively provide
+          you with insights about digital media rights and the evolution
+          of decentralized apps. You are invited to come back for updates.
+          <span class="when-authenticated">
+            So far you have visited this dapp only
+            <span class="badge badge-primary app-visit-count"> times...</span>
+              <button class="btn" data-toggle="collapse" data-target="#visit-count-info">
+                <i class="fas fa-info-circle text-primary"></i>
+              </button>
 
-  <div class="alert alert-warning mt-4">
-        This is just the beginning. We will progressively provide
-        you with insights about digital media rights and the evolution
-        of decentralized apps. You are invited to come back for updates.
-        <span class="when-authenticated">
-          So far you have visited this dapp only <span class="badge badge-primary app-visit-count"> times</span>.
-        </span>
+            <div id="visit-count-info" class="collapse hide alert alert-info">
+              <p>This app stores a timestamp for each time you load the page,
+                 and count the number of timestamps to determine how many times
+                 you have visited.
+               </p>
+             </div>
+          </span>
+        </div>
   </div>
 
-  <div class="card when-authenticated">
+  <div hidden=true class="card when-authenticated">
     <h2 class="card-header">But wait... there is more</h2>
     <div class="card-body">
 
@@ -185,47 +250,7 @@
     </div>
 
     <footer class="py-5 bg-dark mt-5">
-      <style type="text/css">
-        #ph-email-form {
-          box-sizing: border-box;
-          text-align: center;
-          margin: auto;
-          padding: 0;
-          margin-bottom: 2em;
-          /*
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          flex-direction: row;
-          */
-        }
 
-        #ph-email {
-          border: 1px solid #e8e8e8;
-          box-sizing: border-box;
-          color: #000;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-          font-size: 13px;
-          padding: 8px;
-        }
-
-        #ph-subscribe-button {
-          margin-left: 10px;
-          background: #cc4d29;
-          border-radius: 3px;
-          border: 1px solid #cc4d29;
-          /*box-sizing: border-box;*/
-          color: #fff;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-          font-size: 11px;
-          font-weight: 600;
-          height: 34px;
-          letter-spacing: .3px;
-          line-height: 16px;
-          padding: 0 13px;
-          text-transform: uppercase;
-        }
-      </style>
       <div class="container unless-loading">
           <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
                 method="post" id="ph-email-form" name="ph-email-form" target="_blank">
