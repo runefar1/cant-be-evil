@@ -22,6 +22,10 @@
         display: none !important;
       }
 
+      html.loading .when-loaded {
+        display: none !important;
+      }
+
       html.loading nav.navbar {
         background-color: #F8F8F8;
         height: 56px;
@@ -138,21 +142,38 @@
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
-  <div class ="jumbotron">
-    <div hidden="true" class="alert alert-info">
-            <div class="container unless-loading">
-                <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
-                      method="post" id="ph-email-form" name="ph-email-form" target="_blank">
-                  <p class="text-white">Join our mailing list to get announcements about <i>Can't Be Evil:</i></p>
-                  <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
-                  <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
-                </form>
-            </div>
-    </div>
+  <div class="jumbotron">
 
+    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded">
+      <div class="col col-12 col-md-7">
+          <p><strong>This is a preview of <i>Can't Be Evil?</i></strong>...
+            an interactive investigative exploration into dapps and
+            privacy. We use the medium of a <i>dapp</i> - a <u>decentralized</u> application -
+            to expose what such dapps get to know about you compared to
+            data amassing centralized services like Google and Facebook.
+            Spoiler: Far less.
+            Join us in keeping dapps honest and respecting privacy.
+            Sign in below to discover what dapps like this get to know about you.
+          </p>
+      </div>
+      <div class="col-col-12 col-md-5">
+          <div class="container alert alert-danger">
+              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                    method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+                <p class="text-white">
+                  Subscribe to our mailing list to stay informed
+                  and get announcements about <i>Can't Be Evil:</i></p>
+                <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
+                <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+              </form>
+          </div>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </section>
 
-    <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
-
+    <!-- CANVAS -->
     <div class = "row">
       <div class ="col col-12 col-md-5">
         <h2> What is Blockstack?</h2>
@@ -164,12 +185,7 @@
               of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
                while at the same time giving us the ability to increase our own ownerships of this data
                by encrypting it with a key/value system under a blockstack numerical id. </p>
-
-      </div>
-
-      <div class= "col col-12 col-md-7">
-        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
-        <div class="col-12 unless-authenticated">
+        <div class="unless-authenticated">
           <div class="alert alert-primary mt-4">
             <p class="lead">
               Curious about what Blockstack apps get to know about you?
@@ -179,8 +195,12 @@
           </div>
         </div>
       </div>
+
+      <div class= "col col-12 col-md-7">
+        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
+      </div>
     </div>
-  </div>
+
   <div class="container-fluid">
     <div class="card when-authenticated">
       <h2 class="card-header">
@@ -206,8 +226,9 @@
     </div>
   </div>
 
-  <div id="dapps-section" class="mt-4 "> </div>
-  <div class="row px-3 unless-loading">
+  <div id="dapps-section" class="mt-4 when-authenticated"> </div>
+
+  <section class="row px-3 when-authenticated">
     <div class="alert alert-warning mt-4 col-md-8 col-lg-6  mx-auto my-2">
           <p><strong>This is just scratching the surface.</strong> We will progressively provide
           you with insights about digital media rights and the evolution
@@ -224,8 +245,8 @@
 
             <div id="visit-count-info" class="collapse hide">
               <div><strong>How it knows:</strong> The dapp stores a timestamp for each time you load the page,
-                 and count the number of timestamps to determine how many times
-                 you have visited. Reload the page to see it incrementing the counter.
+                 countin the number of timestamps to determine how many times
+                 you have visited. Reload the page to see the counter incrementing.
                </div>
              </div>
           </div>
@@ -242,7 +263,7 @@
 
 
         </div>
-  </div>
+  </section>
 
   <div hidden=true class="card when-authenticated">
     <h2 class="card-header">But wait... there is more</h2>
@@ -263,6 +284,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <footer class="py-5 bg-dark mt-5">
 
