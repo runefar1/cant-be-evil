@@ -208,24 +208,39 @@
 
   <div id="dapps-section" class="mt-4 "> </div>
   <div class="row px-3 unless-loading">
-    <div class="alert alert-warning mt-4 col-md-6 col-lg-4  mx-auto my-2">
-          This is just the beginning. We will progressively provide
+    <div class="alert alert-warning mt-4 col-md-8 col-lg-6  mx-auto my-2">
+          <p><strong>This is just scratching the surface.</strong> We will progressively provide
           you with insights about digital media rights and the evolution
-          of decentralized apps. You are invited to come back for updates.
-          <span class="when-authenticated">
-            So far you have visited this dapp only
-            <span class="badge badge-primary app-visit-count"> times...</span>
-              <button class="btn" data-toggle="collapse" data-target="#visit-count-info">
-                <i class="fas fa-info-circle text-primary"></i>
-              </button>
+          of decentralized apps. You are invited to come back for updates.</p>
 
-            <div id="visit-count-info" class="collapse hide alert alert-info">
-              <p>This app stores a timestamp for each time you load the page,
+          <div class="when-authenticated  alert alert-info">
+            <strong>So far you have visited this dapp
+              <span class="badge badge-primary app-visit-count"> times...</span>
+            </strong>
+            <button class="btn" data-toggle="collapse" data-target="#visit-count-info">
+                  <i class="fas fa-info-circle text-primary"></i>
+            </button>
+
+
+            <div id="visit-count-info" class="collapse hide">
+              <div><strong>How it knows:</strong> The dapp stores a timestamp for each time you load the page,
                  and count the number of timestamps to determine how many times
-                 you have visited.
-               </p>
+                 you have visited. Reload the page to see it incrementing the counter.
+               </div>
              </div>
-          </span>
+          </div>
+
+          <div class="container unless-loading alert alert-danger">
+              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                    method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+                <p><strong>Join our mailing list</strong> to get updates about <i>Can't Be Evil</i>,
+                  online privacy and what dapps get to know about you:</p>
+                <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
+                <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+              </form>
+          </div>
+
+
         </div>
   </div>
 
@@ -250,15 +265,6 @@
     </div>
 
     <footer class="py-5 bg-dark mt-5">
-
-      <div class="container unless-loading">
-          <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
-                method="post" id="ph-email-form" name="ph-email-form" target="_blank">
-            <p class="text-white">Join our mailing list to get announcements about <i>Can't Be Evil:</i></p>
-            <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
-            <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
-          </form>
-      </div>
 
       <div class="container unless-loading">
         <p class="m-0 text-center text-white">
