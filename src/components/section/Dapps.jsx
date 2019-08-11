@@ -21,7 +21,7 @@ export default class Dapps extends Component {
       <h1 className="card-header">Dapps You Have Used</h1>
         <div className="alert alert-info alert-dismissible fade show" role="alert"
            hidden={!apps}>
-          <p>Found {Object.keys(apps || defaultApps).filter(app => !app.includes("localhost")).length}
+          <p>Found <span class="badge badge-primary">{appCount}</span>
           &nbsp;Blockstack dapps in the app history for this account.</p>
           <button type="button" className="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -38,7 +38,7 @@ export default class Dapps extends Component {
       </div>
       {devCount > 0 ? <div className="alert alert-warning">
                         Your app usage history also reveals you're a dapp developer...
-                        {devCount} apps were used from <i>localhost.</i>
+                        {devCount} apps were used from <span class="badge badge-primary">localhost</span>.
                       </div>
                     : null}
        <div className="alert alert-info">

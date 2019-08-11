@@ -27,14 +27,14 @@ export default class Profile extends Component {
     return(
     <div className="alert alert-info">
       <h2></h2>
-      <p><strong>You Blockstack username is <i>{username}</i>.</strong> Duh!</p>
+      <p><strong>You Blockstack username is <span class="badge badge-primary">{username}</span>.</strong> Duh!</p>
 
       <p>But apps may get to learn
          other personal information from your
          Blockstack profile. Let's take a look...</p>
       { person.name()
         ? <p><strong>Name: </strong>
-            Welcome {person.name()}... yes, apps get your name, or
+            Welcome <span class="badge badge-primary">{person.name()}</span>... yes, apps get your name, or
             at least what you said it was when signing up with Blockstack.
             You can change it if you like.</p>
         : <p><strong>Name: </strong>
