@@ -13,7 +13,7 @@
 }
 
 
-/* Heading */
+/* App Bar */
 
 .navbar-brand {
   font-weight: bold;
@@ -35,9 +35,27 @@
     margin-right: 0.5em;
   }
 
-.btn.btn-outline-secondary {
+.navbar .btn.btn-outline-secondary {
     margin-left: 1em
 }
+
+/* CANVAS */
+
+.alert .alert {
+  border-radius: 1em !important;
+}
+
+/* Dapp */
+
+.Dapp .card-body {
+}
+
+.Dapp .card-title {
+  color: gray;
+}
+
+
+/* Raw */
 
 #raw-data-container {
   max-width: 100vw;

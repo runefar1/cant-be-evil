@@ -22,14 +22,19 @@ export default class Profile extends Component {
 
   renderCore () {
     const { person } = this.state;
+    const { userSession, userData } = this.context
+    const username = userData.username.match(/\w+/g)[0]
     return(
     <div className="alert alert-info">
-      <h2>Personal Information</h2>
-      <p>Apps get to learn some personal information from your personal
+      <h2></h2>
+      <p><strong>You Blockstack username is <span class="badge badge-primary">{username}</span>.</strong> Duh!</p>
+
+      <p>But apps may get to learn
+         other personal information from your
          Blockstack profile. Let's take a look...</p>
       { person.name()
         ? <p><strong>Name: </strong>
-            Welcome {person.name()}... yes, apps get your name, or
+            Welcome <span class="badge badge-primary">{person.name()}</span>... yes, apps get your name, or
             at least what you said it was when signing up with Blockstack.
             You can change it if you like.</p>
         : <p><strong>Name: </strong>
@@ -51,7 +56,7 @@ export default class Profile extends Component {
              doesn't like to see themself from time to time ;-)</p>
       }
       { (!person.name() && !person.avatarUrl())
-        ? <p>Well, not much to reveal when you haven't provided much personal
+        ? <p className="alert alert-warning">Well, not much to reveal when you haven't provided much personal
             information to reveal... Let's see what else apps get to know about you.</p>
         : null }
     </div>)
@@ -62,7 +67,7 @@ export default class Profile extends Component {
     return (
       userSession.isUserSignedIn()
       ? this.renderCore()
-      : <div class="alert alert-warning">Not completely signed in</div>
+      : <div className="alert alert-warning">Not completely signed in</div>
     );
   }
 

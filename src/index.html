@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html class="loading">
+<html class="loading theme-light">
   <head>
     <!-- See HtmlWebpackPluginConfig for injections -->
 
     <meta charset="utf-8">
 
-<!--
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cyborg/bootstrap.min.css" />
--->
     <style>
       html:not(.user-signed-in) .when-authenticated {
         display: none !important;
@@ -19,6 +15,18 @@
       }
 
       html.loading .unless-loading {
+        display: none !important;
+      }
+
+      html.loading .when-loaded {
+        display: none !important;
+      }
+
+      html.theme-dark .when-theme-light {
+        display: none !important;
+      }
+
+      html.theme-light .when-theme-dark {
         display: none !important;
       }
 
@@ -41,6 +49,68 @@
       }
 
     </style>
+          <style type="text/css">
+            #ph-email-form {
+              box-sizing: border-box;
+              text-align: center;
+              margin: auto;
+              padding: 0;
+              margin-bottom: 2em;
+              /*
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              flex-direction: row;
+              */
+            }
+
+            #ph-email {
+              border: 1px solid #e8e8e8;
+              box-sizing: border-box;
+              color: #000;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+              font-size: 13px;
+              padding: 8px;
+            }
+
+            #ph-subscribe-button {
+              margin-left: 10px;
+              background: #cc4d29;
+              border-radius: 3px;
+              border: 1px solid #cc4d29;
+              /*box-sizing: border-box;*/
+              color: #fff;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+              font-size: 11px;
+              font-weight: 600;
+              height: 34px;
+              letter-spacing: .3px;
+              line-height: 16px;
+              padding: 0 13px;
+              text-transform: uppercase;
+            }
+
+            .navbar-brand {
+              font-size: larger;
+            }
+
+          </style>
+
+          <script>
+           function setTheme (theme){
+               $("head").append($("<link rel='stylesheet' href='" + theme + "' type='text/css' media='screen' />"))
+           }
+           function setThemeDark() {
+              document.documentElement.className =
+              document.documentElement.className.replace("theme-light", 'theme-dark')
+              setTheme("https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css");
+           }
+           function setThemeLight() {
+              document.documentElement.className =
+              document.documentElement.className.replace("theme-dark", 'theme-light')
+              setTheme("https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css");
+            }
+          </script>
 
   </head>
   <body>
@@ -67,6 +137,27 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul> -->
+      <div class="custom-control custom-switch ml-4">
+            <span style="position: relative; left: -2.5rem">😇</span>
+            <input key="themeSwitch" type="checkbox" class="custom-control-input"
+                   id="customSwitch"
+                   onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
+          <label class="custom-control-label" for="customSwitch">😈</label>
+      </div>
+
+
+      <!--
+      <button class="btn btn-dark when-theme-light ml-4" role="button" onclick="setThemeDark()"
+              data-toggle="tooltip" data-placement="bottom" title="Go to the Dark Side...">
+              😈
+      </button>
+
+      <button class="btn btn-light when-theme-dark" role="button" onclick="setThemeLight()"
+              data-toggle="tooltip" data-placement="bottom" title="Stay good...">
+              😇
+      </button>
+    -->
+
       <div class="navbar-nav ml-auto mr-4">
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
           style="border:none; font-size: 1.5rem;"
@@ -97,10 +188,41 @@
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
-  <div class ="jumbotron">
-    <p class ="lead"> Blockstack:The change in the world's security and information control.</p>
+  <div class="jumbotron mb-0">
 
-    <div class = "row">
+    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded  mt-2 pd-4">
+      <div class="col col-12 col-md-7 pt-4 ">
+          <p><strong>This is a preview of <i>Can't Be Evil?</i></strong>...
+            an interactive investigative exploration into dapps and
+            privacy. We use the medium of a <i>dapp</i> - a <u>decentralized</u> application -
+            to expose what such dapps get to know about you compared to
+            data amassing centralized services like Google and Facebook.
+            Spoiler: Far less.
+            Join us in keeping dapps honest and respecting privacy.
+            <span class="unless-authenticated">
+              Sign in below to discover what dapps like this get to know about you.
+            </span>
+          </p>
+      </div>
+      <div class="col-col-12 col-md-5 pt-4">
+          <div class="container alert alert-danger">
+              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                    method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+                <p class="text-white">
+                  Subscribe to our mailing list to stay informed
+                  and get announcements about <i>Can't&nbsp;Be&nbsp;Evil:</i></p>
+                <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required class="mt-2 mb-3"/>
+                <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+              </form>
+          </div>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </section>
+
+    <!-- CANVAS -->
+    <div class = "row unless-authenticated">
       <div class ="col col-12 col-md-5">
         <h2> What is Blockstack?</h2>
         <p>  Blockstack is a public benefit corporation which runs the titular decentralized network and app ecosystem
@@ -111,13 +233,8 @@
               of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
                while at the same time giving us the ability to increase our own ownerships of this data
                by encrypting it with a key/value system under a blockstack numerical id. </p>
-
-      </div>
-
-      <div class= "col col-12 col-md-7">
-        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
-        <div class="col-12 unless-authenticated">
-          <div class="alert alert-primary mt-4">
+        <div class="unless-authenticated">
+          <div class="alert alert-danger mt-4">
             <p class="lead">
               Curious about what Blockstack apps get to know about you?
               Sign in for a personalized interactive guide that reveals
@@ -126,9 +243,13 @@
           </div>
         </div>
       </div>
+
+      <div class= "col col-12 col-md-7">
+        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
+      </div>
     </div>
-  </div>
-  <div class="container">
+
+  <section class="">
     <div class="card when-authenticated">
       <h2 class="card-header">
         What Dapps Get to Know About You
@@ -144,27 +265,59 @@
                and how they think about what is important, it can be good to go to their
                privacy policy and explore so what they focus on
                lets do some of that with Blockstack.</p>
-            <p>To anaylize it yourself you can
-                 <a href="https://blockstack.org/legal/privacy-policy"
-                    target="_blank">view it here.</a>
+            <p><a href="https://blockstack.org/legal/privacy-policy"
+                    target="_blank">View it here.</a>
             </p>
           </div>
       </div>
     </div>
   </div>
+</section>
 
-  <div id="dapps-section" class="mt-4 "> </div>
+<section id="dapps-section" class="mt-4 when-authenticated"> </section>
 
-  <div class="alert alert-warning mt-4">
-        This is just the beginning. We will progressively provide
-        you with insights about digital media rights and the evolution
-        of decentralized apps. You are invited to come back for updates.
-        <span class="when-authenticated">
-          So far you have visited this dapp only <span class="badge badge-primary app-visit-count"> times</span>.
-        </span>
-  </div>
+  <section class="row px-3 mx-auto alert alert-warning  when-authenticated mt-4">
+    <div class="mt-4 col-md-7 col-lg-6   my-2">
+          <p><strong>This is just scratching the surface.</strong>
+          We will progressively provide
+          you with insights about digital media rights and the evolution
+          of decentralized apps. You are invited to come back for updates.</p>
 
-  <div class="card when-authenticated">
+          <div class="when-authenticated  alert alert-info">
+            <strong>So far you have visited this dapp
+              <span class="badge badge-light app-visit-count"> times...
+              <button class="btn fas fa-info-circle text-primary" data-toggle="collapse" data-target="#visit-count-info">
+                    <!--<i class="fas fa-info-circle text-primary"></i>-->
+              </button></span>
+            </strong>
+
+
+            <div id="visit-count-info" class="collapse hide">
+              <div><strong>How it knows:</strong> The dapp stores a timestamp for each time you load the page,
+                 countin the number of timestamps to determine how many times
+                 you have visited. Reload the page to see the counter incrementing.
+               </div>
+             </div>
+          </div>
+        </div>
+
+        <div class="mt-4 col-12 col-md-5 col-lg-6">
+
+          <div class="container unless-loading alert alert-danger">
+              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+                    method="post" id="ph-email-form" name="ph-email-form" target="_blank">
+                <p><strong>Join our mailing list</strong> to get updates about <i>Can't Be Evil</i>,
+                  online privacy and what dapps get to know about you:</p>
+                <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required class="mb-2"/>
+                <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
+              </form>
+          </div>
+
+
+        </div>
+  </section>
+
+  <div hidden=true class="card when-authenticated">
     <h2 class="card-header">But wait... there is more</h2>
     <div class="card-body">
 
@@ -183,62 +336,18 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <footer class="py-5 bg-dark mt-5">
-      <style type="text/css">
-        #ph-email-form {
-          box-sizing: border-box;
-          text-align: center;
-          margin: auto;
-          padding: 0;
-          margin-bottom: 2em;
-          /*
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          flex-direction: row;
-          */
-        }
-
-        #ph-email {
-          border: 1px solid #e8e8e8;
-          box-sizing: border-box;
-          color: #000;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-          font-size: 13px;
-          padding: 8px;
-        }
-
-        #ph-subscribe-button {
-          margin-left: 10px;
-          background: #cc4d29;
-          border-radius: 3px;
-          border: 1px solid #cc4d29;
-          /*box-sizing: border-box;*/
-          color: #fff;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-          font-size: 11px;
-          font-weight: 600;
-          height: 34px;
-          letter-spacing: .3px;
-          line-height: 16px;
-          padding: 0 13px;
-          text-transform: uppercase;
-        }
-      </style>
-      <div class="container unless-loading">
-          <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
-                method="post" id="ph-email-form" name="ph-email-form" target="_blank">
-            <p class="text-white">Join our mailing list to get announcements about <i>Can't Be Evil:</i></p>
-            <input type="email" value="" name="email" id="ph-email" placeholder="Email Address" required />
-            <input type="submit" value="Subscribe" name="subscribe" id="ph-subscribe-button" />
-          </form>
-      </div>
+    <footer class="py-5 bg-dark">
 
       <div class="container unless-loading">
         <p class="m-0 text-center text-white">
           Made with <i class="far fa-heart" style="color: salmon"></i> <i class="fa blockstack-glyph">&nbsp;</i>
           in San Francisco.</p>
+        <p class="text-center mt-2">
+          <a class="text-white" href="privacy-policy.html">Privacy Policy</a>
+        </p>
+
       </div>
       <!-- /.container -->
     </footer>
