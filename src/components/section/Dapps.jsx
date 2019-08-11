@@ -46,8 +46,8 @@ export default class Dapps extends Component {
            <div className="col col-sm-9 col-md-10 mb-4">
              That apps get to know what other dapps you've used can be beneficial.
              It allows dapps to integrate by accessing each other's data.
-              Moreover, here is one app that uses this data to provide you with
-              access to apps you have used:
+              Moreover, here is one app that uses this data for good to recall
+              apps you have used in the past so you can get back to them:
             </div>
             <div className="col col-6 col-sm-3 col-md-2 col-lg-2 mb-4 mx-auto">
               <Dapp app={"https://dappity.app"} userSession={userSession} link={true} />

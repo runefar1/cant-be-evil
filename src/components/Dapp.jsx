@@ -37,10 +37,10 @@ export default class Dapp extends Component {
                 </div> }
           </div>
         </div>
-        <div className="card-body py-0 mb-0 mt-1">
-          <p className="card-title text-center">
+        <div className="card-text py-0 mb-0 mt-1 d-flex h-100">
+          <div className="card-title text-center d-flex align-items-end justify-content-center mx-auto">
                   {title}
-          </p>
+          </div>
         </div>
         {this.props.link ?
           <a href={appUrl} className="stretched-link" target="_blank"></a>
