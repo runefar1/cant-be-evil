@@ -1,10 +1,12 @@
 {
-  "name": "Can't be Evil?",
+  "name": "Can't Be Evil?",
   "start_url": "https://cantbeevil.app",
   "description": "An interactive exposé on decentralized apps and digital rights.",
-  "icons": [{
-    "src": "https://cantbeevil.app/media/logo.png",
-    "sizes": "22x22",
-    "type": "image/png"
-  }]
+    "icons": [
+        {"src": "https://cantbeevil.app/media/logo.svg",
+         "type": "image/svg"},
+        {"src": "https://cantbeevil.app/media/logo.png",
+         "sizes": "22x22",
+         "type": "image/png"
+        }]
 }
