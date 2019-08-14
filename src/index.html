@@ -125,6 +125,14 @@
     <a class="navbar-brand" href="#">
       <img src="/media/logo.svg" height=32 width=32 />
       Can't Be Evil?</a>
+    <div class="custom-control custom-switch ml-4">
+          <span style="position: relative; left: -2.5rem">😇</span>
+          <input key="themeSwitch" type="checkbox" class="custom-control-input"
+                 id="customSwitch"
+                 onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
+        <label class="custom-control-label" for="customSwitch">😈</label>
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <!--
       <ul class="navbar-nav">
@@ -138,13 +146,6 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul> -->
-      <div class="custom-control custom-switch ml-4">
-            <span style="position: relative; left: -2.5rem">😇</span>
-            <input key="themeSwitch" type="checkbox" class="custom-control-input"
-                   id="customSwitch"
-                   onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
-          <label class="custom-control-label" for="customSwitch">😈</label>
-      </div>
 
       <div class="navbar-nav ml-auto mr-4">
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
