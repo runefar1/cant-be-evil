@@ -39,6 +39,10 @@
     margin-left: 1em
 }
 
+.navbar .fa-info-circle {
+  color: blue;
+}
+
 /* CANVAS */
 
 .alert .alert {
@@ -67,6 +71,12 @@
 
 #raw-data-container table td {
   word-break: break-all;
+}
+
+/* About Modal */
+
+#aboutModal .card-subtitle {
+  color: gray;
 }
 
 /* Footer */

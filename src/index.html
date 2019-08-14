@@ -4,6 +4,7 @@
     <!-- See HtmlWebpackPluginConfig for injections -->
 
     <meta charset="utf-8">
+    <link rel="icon" href="/media/favicon.png">
 
     <style>
       html:not(.user-signed-in) .when-authenticated {
@@ -114,7 +115,6 @@
 
   </head>
   <body>
-    <noscript>Totally understand browsing with javascript disabled, but you need to enable javascript to use the interactive functionality of this page.</noscript>
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
     <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -124,6 +124,22 @@
     <a class="navbar-brand" href="#">
       <img src="/media/logo.svg" height=32 width=32 />
       Can't Be Evil?</a>
+    <span class="navbar-text d-none d-md-block">[preview]</span>
+    <div class="custom-control custom-switch ml-4">
+          <span style="position: relative; left: -2.5rem">😇</span>
+          <input key="themeSwitch" type="checkbox" class="custom-control-input"
+                 id="customSwitch"
+                 onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
+        <label class="custom-control-label" for="customSwitch">😈</label>
+    </div>
+
+    <a type="button"
+       style="border:none; font-size: 1.5rem;"
+       class="btn btn-outline-secondary"
+       data-toggle="modal" data-target="#aboutModal">
+      <i class="fas fa-info-circle"></i>
+    </a>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <!--
       <ul class="navbar-nav">
@@ -137,26 +153,6 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul> -->
-      <div class="custom-control custom-switch ml-4">
-            <span style="position: relative; left: -2.5rem">😇</span>
-            <input key="themeSwitch" type="checkbox" class="custom-control-input"
-                   id="customSwitch"
-                   onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
-          <label class="custom-control-label" for="customSwitch">😈</label>
-      </div>
-
-
-      <!--
-      <button class="btn btn-dark when-theme-light ml-4" role="button" onclick="setThemeDark()"
-              data-toggle="tooltip" data-placement="bottom" title="Go to the Dark Side...">
-              😈
-      </button>
-
-      <button class="btn btn-light when-theme-dark" role="button" onclick="setThemeLight()"
-              data-toggle="tooltip" data-placement="bottom" title="Stay good...">
-              😇
-      </button>
-    -->
 
       <div class="navbar-nav ml-auto mr-4">
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
@@ -172,7 +168,7 @@
           role="button"
           data-toggle="tooltip" title="Follow us on Product Hunt"
           target="_blank"
-          href="https://www.producthunt.com/upcoming/cantbeevil">
+          href="https://www.producthunt.com/upcoming/can-t-be-evil-2">
           <i class="fab fa-product-hunt"></i>
         </a>
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
@@ -188,6 +184,56 @@
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
+  <noscript>Totally understand browsing with javascript disabled, but you need to enable javascript to use the interactive functionality of this page.</noscript>
+
+  <!-- Modal About -->
+  <div class="modal fade when-loaded" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">About the Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="card">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img class="card-img" src="/media/rune.png">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Rune Norderhaug</h5>
+                    <h5 class="card-subtitle">Editor / Digital Rights Activist</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img class="card-img" src="/media/terje.png">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Terje Norderhaug</h5>
+                  <h5 class="card-subtitle">Contributor</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div hidden=true class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="jumbotron mb-0">
 
     <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded  mt-2 pd-4">
@@ -198,15 +244,18 @@
             to expose what such dapps get to know about you compared to
             data amassing centralized services like Google and Facebook.
             Spoiler: Far less.
+          </p>
+          <p>
             Join us in keeping dapps honest and respecting privacy.
             <span class="unless-authenticated">
-              Sign in below to discover what dapps like this get to know about you.
+              Sign in to go down the rabbit hole and discover what dapps
+              like this actually get to know about you.
             </span>
           </p>
       </div>
       <div class="col-col-12 col-md-5 pt-4">
           <div class="container alert alert-danger">
-              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-1/forms"
+              <form action="https://api.producthunt.com/widgets/upcoming/v1/upcoming/can-t-be-evil-2/forms"
                     method="post" id="ph-email-form" name="ph-email-form" target="_blank">
                 <p class="text-white">
                   Subscribe to our mailing list to stay informed
@@ -222,32 +271,103 @@
       </section>
 
     <!-- CANVAS -->
-    <div class = "row unless-authenticated">
-      <div class ="col col-12 col-md-5">
-        <h2> What is Blockstack?</h2>
-        <p>  Blockstack is a public benefit corporation which runs the titular decentralized network and app ecosystem
-            which is forming the backbone of many of the newest technologies arising especially when it comes to security, privacy
-           and how they encrypt your information. </p>
-
-        <p>The slogan "Can't be Evil" is a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
-              of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
-               while at the same time giving us the ability to increase our own ownerships of this data
-               by encrypting it with a key/value system under a blockstack numerical id. </p>
-        <div class="unless-authenticated">
-          <div class="alert alert-danger mt-4">
-            <p class="lead">
-              Curious about what Blockstack apps get to know about you?
-              Sign in for a personalized interactive guide that reveals
-              the facts.</p>
-            <div id="signin-root"></div>
+    <section class = "card-columns unless-authenticated">
+    <div class ="">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Defending Digital Rights</h5>
+          <p class="card-text">
+              Digital rights are those human rights and legal rights that allow
+              individuals to access, use, create, and publish digital media or to
+              access and use computers, other electronic devices, and telecommunications
+              networks. The concept is particularly related to the protection and
+              realization of existing rights, such as the right to privacy and freedom
+              of expression, in the context of digital technologies, especially
+              the Internet.[Wikipedia]</p>
           </div>
         </div>
       </div>
-
-      <div class= "col col-12 col-md-7">
-        <img src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large" class= "img-fluid">
+      <div class ="">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Data Ownership</h5>
+            <p class="card-text">
+                Data ownership is about having legal rights and control
+                over your data. A current concern is that big corporations
+                like Facebook and Google get to have ownership to
+                much information about you, a key element of their
+                business model.</p>
+            </div>
+          </div>
       </div>
-    </div>
+      <div class ="">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Privacy by Design</h5>
+            <p class="card-text">
+                Can technology be designed to secure privacy?
+                That's the idea behind <cite>privacy by design</cite>,
+                where data protection is proactively integrated from creation and
+                throughout the whole engineering process.</p>
+            </div>
+          </div>
+        </div>
+      <div class ="">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Security Through Encryption</h5>
+            <p class="card-text">
+              Public key cryptography is an essential component
+              in keeping data safe, secure and private during transmission
+              and storage. In public key cryptography,
+              any person can encrypt a message using the receiver's public key,
+              but that encrypted message can only be decrypted with the receiver's
+              private key.
+            </p>
+            </div>
+          </div>
+        </div>
+      <div class="">
+        <div class="card">
+          <img class="card-img-top" src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large">
+          <div class="card-body">
+            <h5 class="card-title">Can't be Evil</h5>
+            <p class="card-text">The slogan "Can't be Evil" is a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
+              of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
+               while at the same time giving us the ability to increase our own ownerships of this data
+               by encrypting it with a key/value system under a blockstack numerical id. </p>
+          </div>
+         </div>
+       </div>
+      </div>
+      </div>
+    </section>
+
+  <section class="row my-0 when-loaded unless-authenticated">
+            <div class="col my-0">
+              <div class="alert alert-danger my-0 pt-4 text-center">
+                <p class="lead">
+                  Curious about what dapps get to know about you?</p>
+                <p>
+                  Sign in for a personalized interactive guide that reveals
+                  the facts.</p>
+                <div id="signin-root"></div>
+                <p class="mt-2">Who's Blockstack, anyway?
+                <i class="btn fas fa-info-circle text-primary"
+                   data-toggle="collapse" data-target="#blockstack-login-info">
+                </i></span></p>
+              <div id="blockstack-login-info" class="collapse hide">
+                <div class="row">
+                  <p class="alert alert-info col-md-6 m-auto">
+                    <a href="https://blockstack.org" target="_blank">Blockstack</a> is a public benefit corporation,
+                    creating a decentralized computing network and app ecosystem
+                    designed to protect digital rights.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  </section>
+
 
   <section class="">
     <div class="card when-authenticated">
@@ -338,7 +458,7 @@
     </div>
   </div>
 
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark my-0">
 
       <div class="container unless-loading">
         <p class="m-0 text-center text-white">
