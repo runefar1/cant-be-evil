@@ -12,7 +12,7 @@ const MediaPlugin = new CopyWebpackPlugin([ { from: 'src/assets/media', to: 'med
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  title: "Can't be evil",
+  title: "Can't Be Evil?",
   meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
   template: './src/index.html',
   filename: 'index.html',
