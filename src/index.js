@@ -10,7 +10,6 @@ import Blockstack, {handleSignIn, handleSignOut} from './components/Blockstack.j
 // Require Sass file so webpack can build it
 // import bootstrap from 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootswatch/dist/flatly/bootstrap.css'
-
 import style from './styles/style.css'
 
 ReactDOM.render(<Blockstack><App /></Blockstack>,

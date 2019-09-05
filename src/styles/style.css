@@ -1,5 +1,9 @@
 /* Globals */
 
+body {
+  font-size: larger;
+}
+
 .inspect {
   border: thin solid red;
 }
