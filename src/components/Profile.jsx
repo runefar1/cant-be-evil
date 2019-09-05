@@ -32,6 +32,8 @@ export default class Profile extends Component {
       <p>But apps may get to learn
          other personal information from your
          Blockstack profile. Let's take a look...</p>
+
+      <div className="alert alert-light">
       { person.name()
         ? <p><strong>Name: </strong>
             Welcome <span class="badge badge-primary">{person.name()}</span>... yes, apps get your name, or
@@ -42,6 +44,8 @@ export default class Profile extends Component {
             That's of course OK. You can set it to whatever you like.
             Whatever name you provide will be available for the apps.</p>
       }
+      </div>
+      <div className="alert alert-light">
       {
         person.avatarUrl()
         ? <div>
@@ -55,11 +59,19 @@ export default class Profile extends Component {
              make your experience a little nicer if you do. Who
              doesn't like to see themself from time to time ;-)</p>
       }
+      </div>
+
       { (!person.name() && !person.avatarUrl())
         ? <p className="alert alert-warning">Well, not much to reveal when you haven't provided much personal
             information to reveal... Let's see what else apps get to know about you.</p>
         : null }
-    </div>)
+
+    <div className="alert alert-danger">
+       Perhaps it's time
+       to <a href="https://browser.blockstack.org/profiles" target="_blank">update your blockstack profile!</a>
+    </div>
+    </div>
+  )
   }
 
   render() {

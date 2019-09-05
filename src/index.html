@@ -23,11 +23,11 @@
         display: none !important;
       }
 
-      html.theme-dark .when-theme-light {
+      html.theme-dark .theme-light-only {
         display: none !important;
       }
 
-      html.theme-light .when-theme-dark {
+      html.theme-light .theme-dark-only {
         display: none !important;
       }
 
@@ -238,19 +238,27 @@
 
   <div class="jumbotron mb-0">
 
-    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded  mt-2 pd-4">
+    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded unless-authenticated mt-2 pd-4">
       <div class="col col-12 col-md-7 pt-4 ">
           <p><strong>This is a preview of <i>Can't Be Evil?</i></strong>...
             an interactive investigative exploration into dapps and
             privacy. It's for everyone that cares about online privacy
             and data ownership rights.</p>
 
-            <p>Our intention is to
-            entertain, enlighten and educate you, in that order.
-            We hope you'll enjoy the visit on this website.</p>
-
-            <p>We use the medium of a <i>dapp</i> - a <u>decentralized</u> webapp -
-            to expose what they get to know about you compared to
+            <p>
+            <span class="theme-light-only">
+            Our intention is to
+            entertain, enlighten and educate you, in that order.😃
+            Or if you dare, you may enable the dark mode...😈
+            </span>
+            <span class="theme-dark-only">
+            Our intention is to shock, creep you out, and scare you a little.😜
+            Or if it's too much, return to the light mode... 😇
+            </span>
+            </p>
+            <p>
+            We hope you'll enjoy the visit on this website. We use the medium of a <i>dapp</i>
+            to expose what such <i>decentralized webapps</i> get to know about you compared to
             data amassing centralized services like Google and Facebook.
             Spoiler: <u>Far less.</u>
           </p>
@@ -343,10 +351,11 @@
           <img class="card-img-top" src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large">
           <div class="card-body">
             <h5 class="card-title">Can't be Evil</h5>
-            <p class="card-text">The slogan "Can't be Evil" is a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
-              of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
-               while at the same time giving us the ability to increase our own ownerships of this data
-               by securely encrypting it. </p>
+            <p class="card-text">Google used to have a code of conduct saying "Don't be evil". No more.
+              "Can't be Evil" is a take on this former google corporate code of conduct. It represents this idea of enabling the creation and promotion
+              of an app platform that by design discourage sharing or selling personal data
+               without our permision,
+               while at the same time giving us the ability to increase our own ownerships of this data.</p>
           </div>
          </div>
        </div>
@@ -392,12 +401,15 @@
         <div class="col-12 col-md-4 pb-3 when-authenticated">
           <div class="alert alert-light border-info h-100">
             <h2>Privacy</h2>
-            <p> To understand a bit more about how a company views privacy
-               and how they think about what is important, it can be good to go to their
-               privacy policy and explore so what they focus on
-               lets do some of that with Blockstack.</p>
-            <p><a href="https://blockstack.org/legal/privacy-policy"
-                    target="_blank">View it here.</a>
+            <p>This website retrieves and exposes information about you, but it's for your 👀 eyes only.
+              We do have the highest respect for your privacy. Unlike many other websites
+              you may visit, we're neither collecting such information nor passing it on.</p>
+
+            <p>Blockstack authenticated you when you logged in, but adheres to a strict privacy policy.
+              To understand a bit more about how Blockstack views privacy
+               and how they think about what is important, you may review the
+               <a href="https://blockstack.org/legal/privacy-policy"
+                    target="_blank">privacy policy.</a>
             </p>
           </div>
       </div>
@@ -425,7 +437,7 @@
 
             <div id="visit-count-info" class="collapse hide">
               <div><strong>How it knows:</strong> The dapp stores a timestamp for each time you load the page,
-                 countin the number of timestamps to determine how many times
+                 counting the number of timestamps to determine how many times
                  you have visited. Reload the page to see the counter incrementing.
                </div>
              </div>

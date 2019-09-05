@@ -31,7 +31,7 @@ export default class Dapps extends Component {
       { Object.entries(apps || defaultApps).map( ([app, storage]) =>
            !app.includes("localhost") ?
            <div className="col col-6 col-sm-3 col-md-2 col-lg-2 mb-4" key={app}>
-             <Dapp app={app} storage={storage} userSession={userSession} />
+             <Dapp app={app} storage={storage} userSession={userSession} link={true} />
            </div>
            : <span key={app}/>)
         }
