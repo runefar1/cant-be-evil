@@ -2,32 +2,15 @@ import React, { Component, Link } from 'react';
 import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
 import { Person } from 'blockstack';
-import { handleSignIn, handleSignOut, BlockstackContext} from './Blockstack.jsx'
+import { useBlockstack } from 'react-blockstack';
 
-const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
+const avatarFallbackImage = '/proxy/s3.amazonaws.com/onename/avatar-placeholder.png';
 
-export default class Auth extends Component {
-
-  constructor(props) {
-  	super(props);
-    this.state = {
-        person: {
-          name() {
-              return 'Anonymous';
-            },
-          avatarUrl(){
-            return avatarFallbackImage;
-            }
-          }
-        }
-    }
-
-  render() {
-    const {person} = this.state;
-    const {userSession} = this.context
+export default function Auth (props) {
+    const { userSession, userData, person, signIn, signOut} = useBlockstack()
     return (
       <div className ="Auth">
-          { userSession.isUserSignedIn() ?
+          { person ?
             <span className= "avatar">
                 <img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage}
                     className = "avatar-image" id="avatar-image" />
@@ -35,37 +18,22 @@ export default class Auth extends Component {
             </span>
             : null }
 
-          { !userSession.isUserSignedIn() ?
+          { signIn ?
             <button
               className="btn btn-primary"
-              onClick={ handleSignIn }
+              onClick={ signIn }
             >
               Sign In
             </button>
-            : <button
+            : signOut ?
+            <button
               className="btn btn-outline-secondary"
-              onClick={ handleSignOut }
+              onClick={ signOut }
             >
               Sign Out
             </button>
+           :null
           }
       </div>
     );
   }
-
-  handleSignedIn (userData) {
-    this.setState({person: new Person(userData.profile) })
-  }
-
-  componentDidMount() {
-    const userSession = this.context.userSession
-    if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then(this.handleSignedIn.bind(this))
-    } else if (userSession.isUserSignedIn()) {
-        const userData = userSession.loadUserData()
-        this.handleSignedIn.bind(this)(userData)
-    };
-  }
-}
-
-Auth.contextType = BlockstackContext

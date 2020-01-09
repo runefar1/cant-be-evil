@@ -1,33 +1,17 @@
-import React, { Component } from 'react';
-import { Person } from 'blockstack';
-import { BlockstackContext} from './Blockstack.jsx'
+import React, { Component } from 'react'
+import { useBlockstack } from 'react-blockstack'
 
 const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
 
-export default class Profile extends Component {
-  constructor(props) {
-  	super(props);
-
-  	this.state = {
-  	  person: {
-  	  	name() {
-          return null;
-        },
-  	  	avatarUrl() {
-  	  	  return avatarFallbackImage;
-  	  	},
-  	  },
-  	};
-  }
-
-  renderCore () {
-    const { person } = this.state;
-    const { userSession, userData } = this.context
+export default function Profile (props) {
+  const { userSession, userData, person, signIn, signOut} = useBlockstack()
+  
+  function renderCore () {
     const username = userData.username.match(/\w+/g)[0]
     return(
     <div className="alert alert-info">
       <h2></h2>
-      <p><strong>You Blockstack username is <span class="badge badge-primary">{username}</span>.</strong> Duh!</p>
+      <p><strong>You Blockstack username is <span className="badge badge-primary">{username}</span>.</strong> Duh!</p>
 
       <p>But apps may get to learn
          other personal information from your
@@ -36,7 +20,7 @@ export default class Profile extends Component {
       <div className="alert alert-light">
       { person.name()
         ? <p><strong>Name: </strong>
-            Welcome <span class="badge badge-primary">{person.name()}</span>... yes, apps get your name, or
+            Welcome <span className="badge badge-primary">{person.name()}</span>... yes, apps get your name, or
             at least what you said it was when signing up with Blockstack.
             You can change it if you like.</p>
         : <p><strong>Name: </strong>
@@ -74,21 +58,9 @@ export default class Profile extends Component {
   )
   }
 
-  render() {
-    const { userSession } = this.context
-    return (
-      userSession.isUserSignedIn()
-      ? this.renderCore()
+  return (
+      userData
+      ? renderCore()
       : <div className="alert alert-warning">Not completely signed in</div>
     );
-  }
-
-  componentDidMount() {
-    const { userSession, userData } = this.context
-    this.setState({
-      person: new Person(userData.profile)
-    });
-  }
 }
-
-Profile.contextType = BlockstackContext

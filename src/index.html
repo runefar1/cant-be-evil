@@ -99,7 +99,12 @@
 
           <script>
            function setTheme (theme){
-               $("head").append($("<link rel='stylesheet' href='" + theme + "' type='text/css' media='screen' />"))
+             var el = document.createElement('link');
+             el.setAttribute("rel", 'stylesheet');
+             el.setAttribute("href", theme);
+             el.setAttribute("type", 'text/css');
+             el.setAttribute("media",  'screen');
+             document.head.append(el);
            }
            function setThemeDark() {
               document.documentElement.className =
@@ -156,6 +161,7 @@
         </li>
       </ul> -->
 
+     <!-- Social media take out due to NIL requirements
       <div class="navbar-nav ml-auto mr-4">
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
           style="border:none; font-size: 1.5rem;"
@@ -183,6 +189,7 @@
         </a>
       </div>
     </div>
+  -->
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
@@ -496,24 +503,26 @@
     </footer>
 
     <!-- Can be included in compiled js -->
+    <!--
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+  -->
     <script>
       window.onload = function () {
         document.documentElement.className =
         document.documentElement.className.replace("loading", '')
-        $('#raw-data-container').hide()
+        document.getElementById('raw-data-container').hide()
       };
     </script>
 
+   <!--
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
           rel="stylesheet">
-
+  -->
 
   </body>
 </html>
