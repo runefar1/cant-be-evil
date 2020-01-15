@@ -14,7 +14,7 @@ const MediaPlugin = new CopyWebpackPlugin([ { from: 'src/assets/media', to: 'med
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  title: "Can't Be Evil?",
+  title: "Can't Be Evil",
   meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'},
   template: './src/index.html',
   filename: 'index.html',
@@ -35,12 +35,46 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     },
+    proxy: {
+      '/proxy': '',
+      pathRewrite: {'^/proxy' : 'https://'}
+    }
   },
   module: {
     rules: [
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.css$/i,
+        exclude: /\.lazy\.css$/i,
+        use: [
+        {
+          loader: 'style-loader',
+          options: { attributes: { class: 'style-theme' },
+                     injectType: 'linkTag' },
+        },
+        'css-loader',
+      ]},
+      { test: /\.lazy\.css$/i,
+        use: [
+          {
+            loader: 'style-loader',
+            options: { attributes: { id: 'lazy-theme' },
+                       injectType: 'lazyStyleTag' },
+          },
+          'css-loader',
+        ]},
+      { test: /\.s(a|c)ss$/,
+        exclude: /\.module.(s(a|c)ss)$/,
+        loader: [
+          {
+            loader: 'style-loader',
+            options: { attributes: { id: 'lazy-theme' },
+                       injectType: 'lazyStyleTag' },
+          },
+          'css-loader',
+          'sass-loader'
+        ]
+      },
       { test: /\.jsx$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',

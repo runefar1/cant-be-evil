@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useBlockstack } from 'react-blockstack';
 
 export default function Signin (props) {

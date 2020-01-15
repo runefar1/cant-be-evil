@@ -15,6 +15,9 @@ body {
   border: thin solid green;
 }
 
+/* Themes */
+
+/* @media (prefers-color-scheme: dark) */
 
 /* App Bar */
 
@@ -94,3 +97,47 @@ body {
   background-size: 170% 170%;
   border-radius: 0.2rem;
 }
+
+          #ph-email-form {
+            box-sizing: border-box;
+            text-align: center;
+            margin: auto;
+            padding: 0;
+            margin-bottom: 2em;
+            /*
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: row;
+            */
+          }
+
+          #ph-email {
+            border: 1px solid #e8e8e8;
+            box-sizing: border-box;
+            color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            font-size: 13px;
+            padding: 8px;
+          }
+
+          #ph-subscribe-button {
+            margin-left: 10px;
+            background: #cc4d29;
+            border-radius: 3px;
+            border: 1px solid #cc4d29;
+            /*box-sizing: border-box;*/
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+            font-size: 11px;
+            font-weight: 600;
+            height: 34px;
+            letter-spacing: .3px;
+            line-height: 16px;
+            padding: 0 13px;
+            text-transform: uppercase;
+          }
+
+          .navbar-brand {
+            font-size: larger;
+          }
