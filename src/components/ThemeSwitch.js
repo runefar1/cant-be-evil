@@ -34,7 +34,6 @@ function toggleTheme(darkMode) {
   } else {
     replaceDocumentClass("theme-dark", 'theme-light')
     document.documentElement.setAttribute('data-theme', 'light')
-    //delete require.cache[require.resolve("../styles/light.lazy.css")]
     if (theme.light) {
       theme.light.use()
       if (theme.dark) {theme.dark.unuse()}
