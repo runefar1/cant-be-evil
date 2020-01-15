@@ -1,4 +1,22 @@
-import React, { Component, Link } from 'react';
+import React, { Component, Link, useState } from 'react';
+import { useImage } from './common'
+
+function AppIcon ({url, title}) {
+  const [icon] = useImage(url)
+  const [hidden, setHidden] = useState(false)
+  return (
+  <div className="AppIcon">
+   {icon && !hidden ?
+      <img src={icon}
+           className="dapp-icon"
+           onError={() => setHidden(true)}
+           style={{height: "auto", width: "100%", marginRight: "1em"}} />
+    : <div className="alert alert-warning dapp-icon w-100 h-100"
+           style={{fontSize: "2em", fontColor: "white"}}>
+         {title? title.charAt(0) : null}
+      </div> }
+  </div>)
+}
 
 export default class Dapp extends Component {
 
@@ -6,7 +24,6 @@ export default class Dapp extends Component {
   	super(props);
     this.state = {
   	  manifest: {},
-      hideIcon: false
   	}
     this.controller = new AbortController()
   }
@@ -26,15 +43,7 @@ export default class Dapp extends Component {
            href={appUrl} target="_blank">
         <div className="card-media">
           <div className="m-2">
-            {icon && !this.state.hideIcon ?
-                <img src={icon}
-                     className="dapp-icon"
-                     onError={() => this.setState({hideIcon: true})}
-                     style={{height: "auto", width: "100%", marginRight: "1em"}} />
-              : <div className="alert alert-warning dapp-icon w-100 h-100"
-                     style={{fontSize: "2em", fontColor: "white"}}>
-                   {title? title.charAt(0) : null}
-                </div> }
+            <AppIcon url={icon} title={title}/>
           </div>
         </div>
         <div className="card-text py-0 mb-0 mt-1 d-flex h-100">

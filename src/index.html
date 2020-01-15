@@ -23,11 +23,11 @@
         display: none !important;
       }
 
-      html.theme-dark .when-theme-light {
+      html.theme-dark .theme-light-only {
         display: none !important;
       }
 
-      html.theme-light .when-theme-dark {
+      html.theme-light .theme-dark-only {
         display: none !important;
       }
 
@@ -50,69 +50,6 @@
       }
 
     </style>
-          <style type="text/css">
-            #ph-email-form {
-              box-sizing: border-box;
-              text-align: center;
-              margin: auto;
-              padding: 0;
-              margin-bottom: 2em;
-              /*
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              flex-direction: row;
-              */
-            }
-
-            #ph-email {
-              border: 1px solid #e8e8e8;
-              box-sizing: border-box;
-              color: #000;
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-              font-size: 13px;
-              padding: 8px;
-            }
-
-            #ph-subscribe-button {
-              margin-left: 10px;
-              background: #cc4d29;
-              border-radius: 3px;
-              border: 1px solid #cc4d29;
-              /*box-sizing: border-box;*/
-              color: #fff;
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-              font-size: 11px;
-              font-weight: 600;
-              height: 34px;
-              letter-spacing: .3px;
-              line-height: 16px;
-              padding: 0 13px;
-              text-transform: uppercase;
-            }
-
-            .navbar-brand {
-              font-size: larger;
-            }
-
-          </style>
-
-          <script>
-           function setTheme (theme){
-               $("head").append($("<link rel='stylesheet' href='" + theme + "' type='text/css' media='screen' />"))
-           }
-           function setThemeDark() {
-              document.documentElement.className =
-              document.documentElement.className.replace("theme-light", 'theme-dark')
-              setTheme("https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css");
-           }
-           function setThemeLight() {
-              document.documentElement.className =
-              document.documentElement.className.replace("theme-dark", 'theme-light')
-              setTheme("https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css");
-            }
-          </script>
-
   </head>
   <body>
   <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
@@ -124,14 +61,8 @@
     <a class="navbar-brand" href="#">
       <img src="/media/logo.svg" height=32 width=32 />
       Can't Be Evil?</a>
-    <span class="navbar-text d-none d-md-block">[preview]</span>
-    <div class="custom-control custom-switch ml-4">
-          <span style="position: relative; left: -2.5rem">😇</span>
-          <input key="themeSwitch" type="checkbox" class="custom-control-input"
-                 id="customSwitch"
-                 onchange="if (this.checked) {setThemeDark()} else {setThemeLight();}">
-        <label class="custom-control-label" for="customSwitch">😈</label>
-    </div>
+    <!-- <span class="navbar-text d-none d-md-block">[preview]</span> -->
+    <div id="ThemeSwitch"></div>
 
     <a type="button"
        style="border:none; font-size: 1.5rem;"
@@ -154,6 +85,7 @@
         </li>
       </ul> -->
 
+     <!-- Social media take out due to NIL requirements
       <div class="navbar-nav ml-auto mr-4">
         <a class="btn btn-outline-primary ml-1 py-0 px-2 nav-link"
           style="border:none; font-size: 1.5rem;"
@@ -181,6 +113,7 @@
         </a>
       </div>
     </div>
+  -->
     <div class="ml-auto" id = "auth-root">Sign in</div></div>
   </nav>
 
@@ -236,21 +169,38 @@
 
   <div class="jumbotron mb-0">
 
-    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded  mt-2 pd-4">
+    <section id="preamble" class="alert alert-warning alert-dismissible row when-loaded unless-authenticated mt-2 pd-4">
       <div class="col col-12 col-md-7 pt-4 ">
           <p><strong>This is a preview of <i>Can't Be Evil?</i></strong>...
             an interactive investigative exploration into dapps and
-            privacy. We use the medium of a <i>dapp</i> - a <u>decentralized</u> application -
-            to expose what such dapps get to know about you compared to
+            privacy. It's for everyone that cares about online privacy
+            and data ownership rights.</p>
+
+            <p>
+            <span class="theme-light-only">
+            Our intention is to
+            entertain, enlighten and educate you, in that order.😃
+            Or if you dare, you may enable the dark mode...😈
+            </span>
+            <span class="theme-dark-only">
+            Our intention is to shock, creep you out, and scare you a little.😜
+            Or if it's too much, return to the light mode... 😇
+            </span>
+            </p>
+            <p>
+            We hope you'll enjoy the visit on this website. We use the medium of a <i>dapp</i>
+            to expose what such <i>decentralized webapps</i> get to know about you compared to
             data amassing centralized services like Google and Facebook.
-            Spoiler: Far less.
+            Spoiler: <u>Far less.</u>
           </p>
           <p>
+            <strong>
             Join us in keeping dapps honest and respecting privacy.
             <span class="unless-authenticated">
               Sign in to go down the rabbit hole and discover what dapps
               like this actually get to know about you.
             </span>
+          </strong>
           </p>
       </div>
       <div class="col-col-12 col-md-5 pt-4">
@@ -329,13 +279,14 @@
         </div>
       <div class="">
         <div class="card">
-          <img class="card-img-top" src = "https://pbs.twimg.com/media/D9c7EQBXkAY6lbq.jpg:large">
+          <img class="card-img-top" src = "/media/cbe-sign.jpeg">
           <div class="card-body">
             <h5 class="card-title">Can't be Evil</h5>
-            <p class="card-text">The slogan "Can't be Evil" is a take on a former google corporate code of conduct, represents this idea of enabling the creation and promotion
-              of apps that can't do the mentioned "evil" of enabling companies to easily share and sell data without our permision
-               while at the same time giving us the ability to increase our own ownerships of this data
-               by encrypting it with a key/value system under a blockstack numerical id. </p>
+            <p class="card-text">Google used to have a code of conduct saying "Don't be evil". No more.
+              "Can't be Evil" is a take on this former google corporate code of conduct. It represents this idea of enabling the creation and promotion
+              of an app platform that by design discourage sharing or selling personal data
+               without our permision,
+               while at the same time giving us the ability to increase our own ownerships of this data.</p>
           </div>
          </div>
        </div>
@@ -381,12 +332,15 @@
         <div class="col-12 col-md-4 pb-3 when-authenticated">
           <div class="alert alert-light border-info h-100">
             <h2>Privacy</h2>
-            <p> To understand a bit more about how a company views privacy
-               and how they think about what is important, it can be good to go to their
-               privacy policy and explore so what they focus on
-               lets do some of that with Blockstack.</p>
-            <p><a href="https://blockstack.org/legal/privacy-policy"
-                    target="_blank">View it here.</a>
+            <p>This website retrieves and exposes information about you, but it's for your 👀 eyes only.
+              We do have the highest respect for your privacy. Unlike many other websites
+              you may visit, we're neither collecting such information nor passing it on.</p>
+
+            <p>Blockstack authenticated you when you logged in, but adheres to a strict privacy policy.
+              To understand a bit more about how Blockstack views privacy
+               and how they think about what is important, you may review the
+               <a href="https://blockstack.org/legal/privacy-policy"
+                    target="_blank">privacy policy.</a>
             </p>
           </div>
       </div>
@@ -414,7 +368,7 @@
 
             <div id="visit-count-info" class="collapse hide">
               <div><strong>How it knows:</strong> The dapp stores a timestamp for each time you load the page,
-                 countin the number of timestamps to determine how many times
+                 counting the number of timestamps to determine how many times
                  you have visited. Reload the page to see the counter incrementing.
                </div>
              </div>
@@ -462,7 +416,7 @@
 
       <div class="container unless-loading">
         <p class="m-0 text-center text-white">
-          Made with <i class="far fa-heart" style="color: salmon"></i> <i class="fa blockstack-glyph">&nbsp;</i>
+          Made with <i class="far fa-heart" style="color: salmon"></i>&nbsp;
           in San Francisco.</p>
         <p class="text-center mt-2">
           <a class="text-white" href="privacy-policy.html">Privacy Policy</a>
@@ -471,26 +425,13 @@
       </div>
       <!-- /.container -->
     </footer>
-
-    <!-- Can be included in compiled js -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <script>
       window.onload = function () {
         document.documentElement.className =
         document.documentElement.className.replace("loading", '')
-        $('#raw-data-container').hide()
+        document.getElementById('raw-data-container').hide()
       };
     </script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
-          rel="stylesheet">
-
 
   </body>
 </html>

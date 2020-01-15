@@ -5,19 +5,31 @@ import App from './components/App.jsx'
 import Raw from './components/Raw.jsx'
 import Signin from './components/Signin.jsx'
 import Dapps from './components/section/Dapps.jsx'
-import Blockstack, {handleSignIn, handleSignOut} from './components/Blockstack.jsx'
+import ThemeSwitch from './components/ThemeSwitch'
+import { AppConfig } from 'blockstack'
+import { initBlockstack } from 'react-blockstack'
 
-// Require Sass file so webpack can build it
-import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-import style from './styles/style.css'
+import $ from 'jquery'
+import Popper from 'popper.js'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 
-ReactDOM.render(<Blockstack><App /></Blockstack>,
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
+import './styles/style.css' // overridden in light/dark themes but kept to avoid reverting to none while changing
+
+const appConfig = new AppConfig(['store_write'])
+initBlockstack({appConfig})
+
+ReactDOM.render(<App/>,
                 document.getElementById('app-root'))
-ReactDOM.render(<Blockstack><Signin handleSignIn={handleSignIn}/></Blockstack>,
+ReactDOM.render(<Signin/>,
                 document.getElementById('signin-root'))
-ReactDOM.render(<Blockstack><Auth /></Blockstack>,
+ReactDOM.render(<Auth/>,
                 document.getElementById('auth-root'))
-ReactDOM.render(<Blockstack><Dapps /></Blockstack>,
+ReactDOM.render(<Dapps/>,
                 document.getElementById('dapps-section'))
-ReactDOM.render(<Blockstack><Raw /></Blockstack>,
+ReactDOM.render(<Raw/>,
                 document.getElementById('raw-root'))
+
+ReactDOM.render(<ThemeSwitch/>,
+                document.getElementById('ThemeSwitch'))

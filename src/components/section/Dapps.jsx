@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import { Person } from 'blockstack';
-import { BlockstackContext} from '../Blockstack.jsx'
+import React, { useState } from 'react'
+import { useBlockstack } from 'react-blockstack'
 import Dapp from '../Dapp.jsx'
 
-export default class Dapps extends Component {
-  constructor(props) {
-  	super(props);
-  }
+export default function Dapps (props) {
+  const [state, setState] = useState()
+  const {userSession, userData, signIn, signOut, person } = useBlockstack()
 
-  renderCore () {
-    const { userSession, userData } = this.context
+  function renderCore () {
     const profile = userData.profile
-    const person = new Person(profile)
     const apps = person.profile().apps
     const defaultApps = {"https://cantbeevil.app": null}
     const appCount = Object.keys(apps || defaultApps).filter(app => !app.includes("localhost")).length
@@ -21,7 +17,7 @@ export default class Dapps extends Component {
       <h1 className="card-header">Dapps You Have Used</h1>
         <div className="alert alert-info alert-dismissible fade show" role="alert"
            hidden={!apps}>
-          <p>Found <span class="badge badge-primary">{appCount}</span>
+          <p>Found <span className="badge badge-primary">{appCount}</span>
           &nbsp;Blockstack dapps in the app history for this account.</p>
           <button type="button" className="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -31,14 +27,14 @@ export default class Dapps extends Component {
       { Object.entries(apps || defaultApps).map( ([app, storage]) =>
            !app.includes("localhost") ?
            <div className="col col-6 col-sm-3 col-md-2 col-lg-2 mb-4" key={app}>
-             <Dapp app={app} storage={storage} userSession={userSession} />
+             <Dapp app={app} storage={storage} userSession={userSession} link={true} />
            </div>
            : <span key={app}/>)
         }
       </div>
       {devCount > 0 ? <div className="alert alert-warning">
                         Your app usage history also reveals you're a dapp developer...
-                        {devCount} apps were used from <span class="badge badge-primary">localhost</span>.
+                        {devCount} apps were used from <span className="badge badge-primary">localhost</span>.
                       </div>
                     : null}
        <div className="alert alert-info">
@@ -57,17 +53,9 @@ export default class Dapps extends Component {
     </div>)
   }
 
-  render() {
-    const { userSession } = this.context
-    return (
+  return (
       userSession.isUserSignedIn()
-      ? this.renderCore()
+      ? renderCore()
       : <span />
     );
-  }
-
-  componentDidMount() {
-  }
 }
-
-Dapps.contextType = BlockstackContext
