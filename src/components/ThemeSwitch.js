@@ -15,8 +15,6 @@ import light from "../styles/light.lazy.scss"
 import dark from "../styles/dark.lazy.scss"
 
 const theme = {light, dark}
-
-console.log("KEYS:", dark.use, Object.keys(dark))
 light.use()
 
 function toggleTheme(darkMode) {
@@ -30,16 +28,16 @@ function toggleTheme(darkMode) {
     //setTheme("/css/style.css");
     // delete require.cache[require.resolve("../styles/dark.lazy.css")]
     if (theme.dark) {
-      if (theme.light) {theme.light.unuse()}
       theme.dark.use()
+      if (theme.light) {theme.light.unuse()}
     }
   } else {
     replaceDocumentClass("theme-dark", 'theme-light')
     document.documentElement.setAttribute('data-theme', 'light')
     //delete require.cache[require.resolve("../styles/light.lazy.css")]
     if (theme.light) {
-      if (theme.dark) {theme.dark.unuse()}
       theme.light.use()
+      if (theme.dark) {theme.dark.unuse()}
     }
   }
 }

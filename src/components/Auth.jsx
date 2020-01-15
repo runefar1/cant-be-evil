@@ -3,18 +3,22 @@ import Profile from './Profile.jsx';
 import Signin from './Signin.jsx';
 import { Person } from 'blockstack';
 import { useBlockstack } from 'react-blockstack';
-
-const avatarFallbackImage = '/proxy/s3.amazonaws.com/onename/avatar-placeholder.png';
+import { usePerson } from './common'
 
 export default function Auth (props) {
     const { userSession, userData, person, signIn, signOut} = useBlockstack()
+    const { avatarUrl, username } = usePerson()
     return (
       <div className ="Auth">
           { person ?
             <span className= "avatar">
-                <img src={ person.avatarUrl() ? person.avatarUrl() : avatarFallbackImage}
+            {avatarUrl ?
+                <img src={ avatarUrl ? avatarUrl : avatarFallbackImage}
                     className = "avatar-image" id="avatar-image" />
-                { person.name() }
+                :
+                <i className={"fas fa-user-secret"}
+                   style={{fontSize: "1.6rem", marginRight: "0.5em"}}></i>}
+            { person.name() }
             </span>
             : null }
 

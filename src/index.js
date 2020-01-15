@@ -11,7 +11,6 @@ import { initBlockstack } from 'react-blockstack'
 
 // import bootstrap from 'bootstrap/dist/css/bootstrap.css'
 //import bootstrap from 'bootswatch/dist/flatly/bootstrap.css'
-import style from './styles/style.css'
 
 import $ from 'jquery'
 import Popper from 'popper.js'
