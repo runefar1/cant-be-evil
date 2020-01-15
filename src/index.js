@@ -15,7 +15,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-import './styles/style.css' // overridden in light/dark themes but kept to avoid reverting to none while changing
+import './styles/style.css' /*  overridden in light/dark themes but kept to avoid reverting to none while changing */
 
 const appConfig = new AppConfig(['store_write'])
 initBlockstack({appConfig})
@@ -30,6 +30,5 @@ ReactDOM.render(<Dapps/>,
                 document.getElementById('dapps-section'))
 ReactDOM.render(<Raw/>,
                 document.getElementById('raw-root'))
-
 ReactDOM.render(<ThemeSwitch/>,
                 document.getElementById('ThemeSwitch'))
