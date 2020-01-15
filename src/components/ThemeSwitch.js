@@ -17,16 +17,13 @@ import dark from "../styles/dark.lazy.scss"
 const theme = {light, dark}
 light.use()
 
-function toggleTheme(darkMode) {
-  console.log("TOGGLE:", darkMode, require.cache)
-  const replaceDocumentClass = (before, after) => {
+const replaceDocumentClass = (before, after) => {
     document.documentElement.className = document.documentElement.className.replace (before, after)}
+
+function toggleTheme(darkMode) {
   if (darkMode) {
     replaceDocumentClass("theme-light", 'theme-dark')
     document.documentElement.setAttribute('data-theme', 'dark')
-    //setTheme("/proxy/stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css");
-    //setTheme("/css/style.css");
-    // delete require.cache[require.resolve("../styles/dark.lazy.css")]
     if (theme.dark) {
       theme.dark.use()
       if (theme.light) {theme.light.unuse()}

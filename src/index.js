@@ -9,16 +9,13 @@ import ThemeSwitch from './components/ThemeSwitch'
 import { AppConfig } from 'blockstack'
 import { initBlockstack } from 'react-blockstack'
 
-// import bootstrap from 'bootstrap/dist/css/bootstrap.css'
-//import bootstrap from 'bootswatch/dist/flatly/bootstrap.css'
-
 import $ from 'jquery'
 import Popper from 'popper.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-import './styles/style.css' // overridden in light/darzk themes but kept to avoid reverting to none while changing
+import './styles/style.css' // overridden in light/dark themes but kept to avoid reverting to none while changing
 
 const appConfig = new AppConfig(['store_write'])
 initBlockstack({appConfig})
