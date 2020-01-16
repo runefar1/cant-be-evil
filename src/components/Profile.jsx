@@ -6,7 +6,7 @@ function Img (props) {
   // CBE compliant image element
   const [src] = useImage(props.src)
   return (
-    <img src={src} {...props}/>
+    <img {...props} src={src || null}/>
   )
 }
 
