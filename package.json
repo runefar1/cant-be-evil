@@ -1,6 +1,6 @@
 {
   "name": "cant-be-evil",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A simple Blockstack app using ReactJS",
   "main": "index.js",
   "scripts": {
