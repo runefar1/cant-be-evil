@@ -23,7 +23,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   target: 'web',
   output: {
     path: path.resolve('public/build'),
