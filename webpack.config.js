@@ -19,7 +19,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: 'index.html',
   inject: 'body',
-  xhtml: true
+  //xhtml: true
 });
 
 module.exports = {
