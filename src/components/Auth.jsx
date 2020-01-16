@@ -7,13 +7,13 @@ import { usePerson } from './common'
 
 export default function Auth (props) {
     const { userSession, userData, signIn, signOut} = useBlockstack()
-    const { avatarUrl, username } = usePerson()
+    const {avatarUrl, username} = usePerson()
     return (
       <div className ="Auth">
           { userData &&
             <span className= "avatar">
             {avatarUrl ?
-                <img src={ avatarUrl ? avatarUrl : avatarFallbackImage}
+                <img src={ avatarUrl }
                     className = "avatar-image" id="avatar-image" />
                 :
                 <i className={"fas fa-user-secret"}

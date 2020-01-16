@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { useBlockstack } from 'react-blockstack'
-import { useImage } from './common.js'
+import { useImage, usePerson } from './common.js'
 
 function Img (props) {
   // CBE compliant image element
-  const [src] = useImage(props.src)
+  // const [src] = useImage(props.src)
+  const {avatarUrl, username} = usePerson()
+  const src = avatarUrl
+  console.log("Img:", props.src, "->", src)
   return (
-    <img {...props} src={src || null}/>
+    src && <img {...props} src={src || null}/>
   )
 }
 
 export default function Profile (props) {
   const { userSession, userData, person, signIn, signOut} = useBlockstack()
-
+  const avatarUrl = person && person.avatarUrl()
+  //console.log("Profile image:", avatarUrl)
   function renderCore () {
     const username = userData.username.match(/\w+/g)[0]
     return(
@@ -37,11 +41,10 @@ export default function Profile (props) {
       }
       </div>
       <div className="alert alert-light">
-      {
-        person.avatarUrl()
+      { avatarUrl
         ? <div>
             <p>Nice shot...</p>
-            <Img src={person.avatarUrl()} className="profile-avatar"/>
+            <Img src={avatarUrl} className="profile-avatar"/>
             <p className="mt-4 text-center alert alert-warning">
                Apps get to see your avatar picture.
             </p>
@@ -54,7 +57,7 @@ export default function Profile (props) {
       }
       </div>
 
-      { (!person.name() && !person.avatarUrl())
+      { (!person.name() && !avatarUrl)
         ? <p className="alert alert-warning">Well, not much to reveal when you haven't provided much personal
             information to reveal... Let's see what else apps get to know about you.</p>
         : null }

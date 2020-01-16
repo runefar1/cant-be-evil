@@ -11,13 +11,17 @@ export function useImage (url) {
   useEffect(() => {
     if (url) {
       console.log("Fetch image into blob:", url)
-      fetch(url.href, {method: "GET", mode: 'cors'})
-      .then((response) => response.blob())
-      .then((blob) => blob && setState(URL.createObjectURL(blob)))
-          //.then((url) => setState(url))
-      .catch((err) => console.warn("Failed fetching url:", err))
-      }
-    }, [url])
+      fetch(url, {method: "GET", mode: 'cors'})
+      .then((response) => {
+        console.log("Fetch image", url, "->", response)
+        response.blob()
+        .then((blob) => (blob && URL.createObjectURL(blob)))
+        .then((url) => setState(url))
+        .catch((err) => console.warn("Image failed loading:", url, err))
+      })
+      .catch((err) => console.warn("Image failed decoding:", url, err))
+    }
+  }, [url])
   return [state]
 }
 
