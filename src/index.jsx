@@ -12,10 +12,10 @@ import { initBlockstack } from 'react-blockstack'
 import $ from 'jquery'
 import Popper from 'popper.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
-
 import '@fortawesome/fontawesome-free/css/all.min.css'
-
 import './styles/style.css' /*  overridden in light/dark themes but kept to avoid reverting to none while changing */
+
+document.$ = $
 
 const appConfig = new AppConfig(['store_write'])
 initBlockstack({appConfig})

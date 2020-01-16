@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import { useBlockstack } from 'react-blockstack'
+import { useImage } from './common.js'
 
-const avatarFallbackImage = 'https://s3.amazonaws.com/onename/avatar-placeholder.png';
+function Img (props) {
+  // CBE compliant image element
+  const [src] = useImage(props.src)
+  return (
+    <img src={src} {...props}/>
+  )
+}
 
 export default function Profile (props) {
   const { userSession, userData, person, signIn, signOut} = useBlockstack()
-  
+
   function renderCore () {
     const username = userData.username.match(/\w+/g)[0]
     return(
@@ -34,8 +41,10 @@ export default function Profile (props) {
         person.avatarUrl()
         ? <div>
             <p>Nice shot...</p>
-            <img src={person.avatarUrl()} className="profile-avatar" />
-            <p>Apps get to see your avatar picture.</p>
+            <Img src={person.avatarUrl()} className="profile-avatar"/>
+            <p className="mt-4 text-center alert alert-warning">
+               Apps get to see your avatar picture.
+            </p>
           </div>
         : <p><strong>Profile image: </strong>
              You haven't yet uploaded an image for your avatar... which is OK.

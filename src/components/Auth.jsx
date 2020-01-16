@@ -10,7 +10,7 @@ export default function Auth (props) {
     const { avatarUrl, username } = usePerson()
     return (
       <div className ="Auth">
-          { person ?
+          { userData &&
             <span className= "avatar">
             {avatarUrl ?
                 <img src={ avatarUrl ? avatarUrl : avatarFallbackImage}
@@ -18,9 +18,8 @@ export default function Auth (props) {
                 :
                 <i className={"fas fa-user-secret"}
                    style={{fontSize: "1.6rem", marginRight: "0.5em"}}></i>}
-            { person.name() }
-            </span>
-            : null }
+            { username }
+            </span> }
 
           { signIn ?
             <button
