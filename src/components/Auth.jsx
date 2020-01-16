@@ -6,7 +6,7 @@ import { useBlockstack } from 'react-blockstack';
 import { usePerson } from './common'
 
 export default function Auth (props) {
-    const { userSession, userData, person, signIn, signOut} = useBlockstack()
+    const { userSession, userData, signIn, signOut} = useBlockstack()
     const { avatarUrl, username } = usePerson()
     return (
       <div className ="Auth">
