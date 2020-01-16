@@ -47,7 +47,6 @@
     "@dbeining/react-atom": "^4.1.5",
     "blockstack": "~19.3.0",
     "jquery": "^3.4.1",
-    "popper": "^1.0.1",
     "popper.js": "^1.15.0",
     "react": "^16.9.0",
     "react-blockstack": "^0.6.4",
