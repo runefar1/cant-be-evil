@@ -5,7 +5,7 @@ import App from './components/App.jsx'
 import Raw from './components/Raw.jsx'
 import Signin from './components/Signin.jsx'
 import Dapps from './components/section/Dapps.jsx'
-import ThemeSwitch from './components/ThemeSwitch'
+import ThemeSwitch from './components/ThemeSwitch.jsx'
 import { AppConfig } from 'blockstack'
 import { initBlockstack } from 'react-blockstack'
 
