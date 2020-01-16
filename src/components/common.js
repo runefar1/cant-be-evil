@@ -6,6 +6,7 @@ export function useImage (url) {
   // Todo: memoize?
   // TODO: Free the object url and blob -> url.revokeObjectURL()
   // TODO: Use undefined for image state until determined
+  // TODO: USe {src: ..} for the image and a setter to change the url dynamically
   const [state, setState] = useState(null)
   useEffect(() => {
     if (url) {
