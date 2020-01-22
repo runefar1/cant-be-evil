@@ -19,11 +19,11 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: 'index.html',
   inject: 'body',
-  xhtml: true
+  //xhtml: true
 });
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   target: 'web',
   output: {
     path: path.resolve('public/build'),
@@ -73,7 +73,8 @@ module.exports = {
                        injectType: 'lazyStyleTag' },
           },
           'css-loader',
-          'sass-loader'
+          {loader: 'sass-loader',
+           options: {implementation: require('sass')}}
         ]
       },
       { test: /\.jsx$/,

@@ -64,6 +64,10 @@ body {
   color: gray;
 }
 
+.profile-avatar {
+  max-width: 100%;
+}
+
 
 /* Raw */
 

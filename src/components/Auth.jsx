@@ -6,21 +6,20 @@ import { useBlockstack } from 'react-blockstack';
 import { usePerson } from './common'
 
 export default function Auth (props) {
-    const { userSession, userData, person, signIn, signOut} = useBlockstack()
-    const { avatarUrl, username } = usePerson()
+    const { userSession, userData, signIn, signOut} = useBlockstack()
+    const {avatarUrl, username} = usePerson()
     return (
       <div className ="Auth">
-          { person ?
+          { userData &&
             <span className= "avatar">
             {avatarUrl ?
-                <img src={ avatarUrl ? avatarUrl : avatarFallbackImage}
+                <img src={ avatarUrl }
                     className = "avatar-image" id="avatar-image" />
                 :
                 <i className={"fas fa-user-secret"}
                    style={{fontSize: "1.6rem", marginRight: "0.5em"}}></i>}
-            { person.name() }
-            </span>
-            : null }
+            { username }
+            </span> }
 
           { signIn ?
             <button
